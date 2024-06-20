@@ -11,3 +11,6 @@
 #else
 	#error IBX_Engine only supports Windows!
 #endif // IBX_PLATFORM_WINDOWS
+
+// BIT(x) is a macro that shifts 1 by x bits to the left
+#define BIT(x) (1 << x)

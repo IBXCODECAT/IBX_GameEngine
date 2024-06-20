@@ -38,6 +38,8 @@ project "IBX_Engine"
     -- Include directories
     includedirs
     {
+        -- Include the source directory (prevents ../../ in includes)
+        "%{prj.name}/src",
         -- Include spdlog
         "%{prj.name}/vendor/spdlog/include"
     }
@@ -108,6 +110,9 @@ project "Sandbox"
     -- Include directories
     includedirs
     {
+        -- Include the source directory (prevents ../../ in includes)
+        "%{prj.name}/src",
+        
         -- Include spdlog
         "" .. ENGINE_NAME .. "/vendor/spdlog/include",
 

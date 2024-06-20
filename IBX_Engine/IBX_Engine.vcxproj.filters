@@ -4,6 +4,9 @@
     <Filter Include="IBX">
       <UniqueIdentifier>{48F2870B-B4FB-877C-3D77-9E7CA97F937C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IBX\Events">
+      <UniqueIdentifier>{2C3DDD66-18F5-1EB4-81FC-F70F6DD3B9A4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IBX\Application.h">
@@ -14,6 +17,18 @@
     </ClInclude>
     <ClInclude Include="src\IBX\EntryPoint.h">
       <Filter>IBX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Events\ApplicationEvent.h">
+      <Filter>IBX\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Events\Event.h">
+      <Filter>IBX\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Events\KeyEvent.h">
+      <Filter>IBX\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Events\MouseEvent.h">
+      <Filter>IBX\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Log.h">
       <Filter>IBX</Filter>
