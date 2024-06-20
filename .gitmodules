@@ -1,0 +1,3 @@
+[submodule "IBX_Engine/vendor/spdlog"]
+	path = IBX_Engine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
