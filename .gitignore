@@ -28,6 +28,10 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+
+# ADDED FOR INTERMEDIATE BINARIES
+[Bb]in-[Ii]nt/
+
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
