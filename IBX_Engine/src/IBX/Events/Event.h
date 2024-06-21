@@ -1,9 +1,8 @@
 #pragma once
 
-#include "IBX/Core.h";
+#include "ibxpch.h"
 
-#include <string>
-#include <functional>
+#include "IBX/Core.h";
 
 namespace IBX_Engine
 {
@@ -51,7 +50,7 @@ namespace IBX_Engine
 		/// </summary>
 		/// <param name="category"></param>
 		/// <returns></returns>
-		inline bool IsInCategory(EventCategory category)
+		inline bool IsInCategory(EventCategory category) const
 		{
 			return GetCategoryFlags() & category;
 		}

@@ -2,7 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
 #include <spdlog/fmt/fmt.h>
 
 namespace IBX_Engine

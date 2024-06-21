@@ -34,6 +34,7 @@
       <Filter>IBX</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX_Engine.h" />
+    <ClInclude Include="src\ibxpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\IBX\Log.cpp">
       <Filter>IBX</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibxpch.cpp" />
   </ItemGroup>
 </Project>

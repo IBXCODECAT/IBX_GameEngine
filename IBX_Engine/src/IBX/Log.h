@@ -6,9 +6,6 @@
 #include <spdlog/fmt/ostr.h> // for custom formatting
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-#include <memory>
-
-
 namespace IBX_Engine
 {
 	class IBX_API Log

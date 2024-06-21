@@ -1,3 +1,5 @@
+#include "ibxpch.h"
+
 #include "Application.h"
 
 #include "IBX/Events//ApplicationEvent.h";

@@ -75,7 +75,7 @@ project "Sandbox"
     filter "configurations:Dist"
         defines "IBX_DIST"
         optimize "On"
-        
+
 project "IBX_Engine"
     location "IBX_Engine"
     
@@ -88,6 +88,10 @@ project "IBX_Engine"
 
     -- Intermediates output directory
     objdir ("bin-int/" ..outputDir .. "/%{prj.name}")
+
+    -- Precompiled Headers (PCH)
+    pchheader "ibxpch.h"
+    pchsource "IBX_Engine/src/ibxpch.cpp"
 
     -- Defines the files to include
     files

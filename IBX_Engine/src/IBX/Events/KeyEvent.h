@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-#include <sstream>
 
 // Include the fmt library for spdlog formatting
 #include <spdlog/fmt/fmt.h>

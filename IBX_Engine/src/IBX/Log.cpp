@@ -1,3 +1,5 @@
+#include "ibxpch.h"
+
 #include "Log.h"
 
 namespace IBX_Engine
