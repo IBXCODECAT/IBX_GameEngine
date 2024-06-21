@@ -1,3 +1,3 @@
 @echo on
-%~dp0vendor/bin/premake/premake5.exe vs2022
+%~dp0vendor/premake/premake5.exe vs2022
 pause
