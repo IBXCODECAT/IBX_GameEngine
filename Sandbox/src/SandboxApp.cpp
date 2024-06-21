@@ -3,37 +3,40 @@
 class ExampleLayer : public IBX_Engine::Layer
 {
 public:
-	ExampleLayer() : Layer("Example")
+	ExampleLayer()
+		: Layer("Example")
 	{
-
 	}
 
 	void OnUpdate() override
 	{
-		IBX_CLIENT_INFO("ExampleLayer::Update");
+		IBX_CORE_TRACE("ExampleLayer::Update");
 	}
 
 	void OnEvent(IBX_Engine::Event& event) override
 	{
-		IBX_CLIENT_TRACE("{0}", event);	
+		IBX_CORE_INFO("{0}", event);
 	}
+
 };
 
-class SandboxApp : public IBX_Engine::Application
+class Sandbox : public IBX_Engine::Application
 {
 public:
-	SandboxApp()
+	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new IBX_Engine::ImGuiLayer());
 	}
 
-	~SandboxApp()
+	~Sandbox()
 	{
 
 	}
+
 };
 
 IBX_Engine::Application* IBX_Engine::CreateApplication()
 {
-	return new SandboxApp();
+	return new Sandbox();
 }

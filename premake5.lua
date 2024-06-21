@@ -16,10 +16,12 @@ ENGINE_NAME = "IBX_Engine"
 IncludeDir = {}
 IncludeDir["GLFW"] = "IBX_Engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "IBX_Engine/vendor/Glad/include"
+IncludeDir["ImGui"] = "IBX_Engine/vendor/ImGui"
 
 -- Include the premake5.lua file in the GLFW project (almost like a c++ style include)
 include "IBX_Engine/vendor/GLFW"
 include "IBX_Engine/vendor/Glad"
+include "IBX_Engine/vendor/ImGui"
 
 project "Sandbox"
     location "Sandbox"
@@ -126,6 +128,9 @@ project "IBX_Engine"
 
         -- Include Glad
         "%{IncludeDir.Glad}",
+
+        -- Include ImGui
+        "%{IncludeDir.ImGui}",
     }
 
     -- Link Libraries
@@ -136,6 +141,9 @@ project "IBX_Engine"
 
         -- Link the Glad project
         "Glad",
+
+        -- Link the ImGui project
+        "ImGui",
 
         "opengl32.lib"
     }

@@ -10,9 +10,14 @@ namespace IBX_Engine
 {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+	
+	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
 	{
+		IBX_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		// Unique pointer allows for automatic memory management (no need to manually delete the pointer)
 		m_Window = std::unique_ptr<Window>(Window::Create());
 
@@ -49,12 +54,17 @@ namespace IBX_Engine
 	
 	void Application::PushLayer(Layer* layer)
 	{
+		IBX_CORE_INFO("Pushing layer: {0}", layer->GetName());
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		IBX_CORE_INFO("Pushing overlay: {0}", overlay->GetName());
 		m_LayerStack.PushOverlay(overlay);
+
+		overlay->OnAttach();
 	}
 
 	void Application::Run()

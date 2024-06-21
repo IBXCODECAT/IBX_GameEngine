@@ -4,3 +4,6 @@
 [submodule "IBX_Engine/vendor/GLFW"]
 	path = IBX_Engine/vendor/GLFW
 	url = https://github.com/IBXCODECAT/GLFW_FORK
+[submodule "IBX_Engine/vendor/ImGui"]
+	path = IBX_Engine/vendor/ImGui
+	url = https://github.com/IBXCODECAT/IMGUI_FORK

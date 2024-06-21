@@ -27,7 +27,17 @@ namespace IBX_Engine
 		// Add an overlay to the layer stack (Overlays are added after the layers)
 		void PushOverlay(Layer* overlay);
 
+		// Static function to get the window instance
+		inline Window& GetWindow() { return *m_Window; }
+
+		// Static function to get the application instance
+		inline static Application& Get() { return *s_Instance; }
+
+
 	private:
+
+		// Static pointer to the application instance
+		static Application* s_Instance;
 
 		bool OnWindowClose(WindowCloseEvent& e);
 
