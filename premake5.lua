@@ -15,9 +15,11 @@ ENGINE_NAME = "IBX_Engine"
 -- Include Directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "IBX_Engine/vendor/GLFW/include"
+IncludeDir["Glad"] = "IBX_Engine/vendor/Glad/include"
 
 -- Include the premake5.lua file in the GLFW project (almost like a c++ style include)
 include "IBX_Engine/vendor/GLFW"
+include "IBX_Engine/vendor/Glad"
 
 project "Sandbox"
     location "Sandbox"
@@ -121,6 +123,9 @@ project "IBX_Engine"
 
         -- Include GLFW
         "%{IncludeDir.GLFW}",
+
+        -- Include Glad
+        "%{IncludeDir.Glad}",
     }
 
     -- Link Libraries
@@ -128,6 +133,10 @@ project "IBX_Engine"
     {
         -- Link the GLFW project
         "GLFW",
+
+        -- Link the Glad project
+        "Glad",
+
         "opengl32.lib"
     }
 
@@ -146,7 +155,8 @@ project "IBX_Engine"
         defines
         {
             "IBX_PLATFORM_WINDOWS",
-            "IBX_BUILD_DLL"
+            "IBX_BUILD_DLL",
+            "GLFW_INCLUDE_NONE" -- Prevents GLFW from including OpenGL headers
         }
 
         -- After we build the project run the following

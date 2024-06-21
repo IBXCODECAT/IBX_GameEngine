@@ -5,6 +5,8 @@
 #include "IBX/Events/MouseEvent.h"
 #include "IBX/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace IBX_Engine {
 
 	static bool s_GLFWInitialized = false;
@@ -49,8 +51,14 @@ namespace IBX_Engine {
 			s_GLFWInitialized = true;
 		}
 
+		// Create window and set opengl context
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		// Initialize Glad (OpenGL loader)
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		IBX_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

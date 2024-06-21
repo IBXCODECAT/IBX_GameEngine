@@ -15,7 +15,7 @@ public:
 
 	void OnEvent(IBX_Engine::Event& event) override
 	{
-		IBX_CLIENT_TRACE("{0}", event);
+		IBX_CLIENT_TRACE("{0}", event);	
 	}
 };
 

@@ -4,8 +4,7 @@
 
 #include "IBX/Log.h";
 
-// Include GLFW for OpenGL
-#include <GLFW/glfw3.h>
+#include <Glad/glad.h>
 
 namespace IBX_Engine
 {
