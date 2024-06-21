@@ -50,12 +50,18 @@ namespace IBX_Engine
 		/// <summary>
 		/// Utility function to check if the event is in a certain category.
 		/// </summary>
-		/// <param name="category"></param>
-		/// <returns></returns>
+		/// <param name="category">- EventCategory</param>
+		/// <returns>True if in category</returns>
 		inline bool IsInCategory(EventCategory category) const
 		{
 			return GetCategoryFlags() & category;
 		}
+
+		/// <summary>
+		/// Utility function to check if the event has been handled.
+		/// </summary>
+		/// <returns>True if handled</returns>
+		inline bool Handled() const { return m_Handled; }
 
 	protected:
 		bool m_Handled = false;

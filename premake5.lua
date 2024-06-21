@@ -159,13 +159,16 @@ project "IBX_Engine"
     filter "configurations:Debug"
         defines "IBX_DEBUG"
         symbols "On"
+        buildoptions "/MDd" -- /MDd for dynamic linking debug
     
     -- Only applies to the release configuration (for any platform)
     filter "configurations:Release"
         defines "IBX_RELEASE"
         optimize "On"
+        buildoptions "/MD" -- /MD for dynamic linking
     
     -- Only applies to the dist configuration (for any platform)
     filter "configurations:Dist"
         defines "IBX_DIST"
         optimize "On"
+        buildoptions "/MD" -- /MD for dynamic linking

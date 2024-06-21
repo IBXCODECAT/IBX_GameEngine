@@ -84,6 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -110,6 +111,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -137,6 +139,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -159,6 +162,8 @@
     <ClInclude Include="src\IBX\Events\Event.h" />
     <ClInclude Include="src\IBX\Events\KeyEvent.h" />
     <ClInclude Include="src\IBX\Events\MouseEvent.h" />
+    <ClInclude Include="src\IBX\Layers\Layer.h" />
+    <ClInclude Include="src\IBX\Layers\LayerStack.h" />
     <ClInclude Include="src\IBX\Log.h" />
     <ClInclude Include="src\IBX\Window.h" />
     <ClInclude Include="src\IBX_Engine.h" />
@@ -167,6 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp" />
+    <ClCompile Include="src\IBX\Layers\Layer.cpp" />
+    <ClCompile Include="src\IBX\Layers\LayerStack.cpp" />
     <ClCompile Include="src\IBX\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ibxpch.cpp">

@@ -7,6 +7,9 @@
     <Filter Include="IBX\Events">
       <UniqueIdentifier>{2C3DDD66-18F5-1EB4-81FC-F70F6DD3B9A4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IBX\Layers">
+      <UniqueIdentifier>{0728C075-F3DF-01C3-5CE7-DA1E48BE9CB3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -36,6 +39,12 @@
     <ClInclude Include="src\IBX\Events\MouseEvent.h">
       <Filter>IBX\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Layers\Layer.h">
+      <Filter>IBX\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Layers\LayerStack.h">
+      <Filter>IBX\Layers</Filter>
+    </ClInclude>
     <ClInclude Include="src\IBX\Log.h">
       <Filter>IBX</Filter>
     </ClInclude>
@@ -51,6 +60,12 @@
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
       <Filter>IBX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Layers\Layer.cpp">
+      <Filter>IBX\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Layers\LayerStack.cpp">
+      <Filter>IBX\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\IBX\Log.cpp">
       <Filter>IBX</Filter>
