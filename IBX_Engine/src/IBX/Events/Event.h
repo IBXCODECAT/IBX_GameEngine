@@ -4,6 +4,8 @@
 
 #include "IBX/Core.h";
 
+#include <spdlog/fmt/fmt.h>
+
 namespace IBX_Engine
 {
 	// Events in the engine are currently blocking, meaning that when an event occurs
@@ -84,4 +86,18 @@ namespace IBX_Engine
 	{
 		return os << e.ToString();
 	}
+}
+
+// Include this after your class definitions to provide formatter specializations
+namespace fmt {
+	template<>
+	struct formatter<IBX_Engine::Event> {
+		template<typename ParseContext>
+		constexpr auto parse(ParseContext& ctx) { return ctx.begin(); }
+
+		template<typename FormatContext>
+		auto format(const IBX_Engine::Event& e, FormatContext& ctx) {
+			return format_to(ctx.out(), "{}", e.ToString());
+		}
+	};
 }
