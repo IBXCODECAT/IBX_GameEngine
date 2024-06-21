@@ -7,6 +7,12 @@
     <Filter Include="IBX\Events">
       <UniqueIdentifier>{2C3DDD66-18F5-1EB4-81FC-F70F6DD3B9A4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IBX\Application.h">
@@ -33,7 +39,13 @@
     <ClInclude Include="src\IBX\Log.h">
       <Filter>IBX</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Window.h">
+      <Filter>IBX</Filter>
+    </ClInclude>
     <ClInclude Include="src\IBX_Engine.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\ibxpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\IBX\Log.cpp">
       <Filter>IBX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\ibxpch.cpp" />
   </ItemGroup>

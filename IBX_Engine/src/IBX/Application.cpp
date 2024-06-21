@@ -9,6 +9,8 @@ namespace IBX_Engine
 {
 	Application::Application()
 	{
+		// Unique pointer allows for automatic memory management (no need to manually delete the pointer)
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -18,19 +20,9 @@ namespace IBX_Engine
 	
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-
-
-		if(e.IsInCategory(EventCategoryApplication))
+		while (true)
 		{
-			IBX_CORE_TRACE(e);
+			m_Window->OnUpdate();
 		}
-
-		if(e.IsInCategory(EventCategoryInput))
-		{
-			IBX_CORE_TRACE(e);
-		}
-
-		while (true);
 	}
 }

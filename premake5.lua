@@ -12,6 +12,13 @@ outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 ENGINE_NAME = "IBX_Engine"
 
+-- Include Directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "IBX_Engine/vendor/GLFW/include"
+
+-- Include the premake5.lua file in the GLFW project (almost like a c++ style include)
+include "IBX_Engine/vendor/GLFW"
+
 project "Sandbox"
     location "Sandbox"
 
@@ -46,7 +53,7 @@ project "Sandbox"
         "" .. ENGINE_NAME .. "/vendor/spdlog/include",
 
         -- Include IBX Engine
-        "IBX_Engine/src/"
+        "IBX_Engine/src/",
     }
 
     -- Defines or Preprocessor Directives
@@ -58,7 +65,7 @@ project "Sandbox"
     -- Link IBX_Engine.dll as a reference
     links
     {
-        "IBX_Engine"
+        "IBX_Engine",
     }
 
     -- Only applies to the debug configuration (for any platform)
@@ -108,8 +115,20 @@ project "IBX_Engine"
     {
         -- Include the source directory (prevents ../../ in includes)
         "%{prj.name}/src",
+        
         -- Include spdlog
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+
+        -- Include GLFW
+        "%{IncludeDir.GLFW}",
+    }
+
+    -- Link Libraries
+    links
+    {
+        -- Link the GLFW project
+        "GLFW",
+        "opengl32.lib"
     }
 
     -- The following only applies to windows until another filter is reached

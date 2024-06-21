@@ -1,3 +1,6 @@
 [submodule "IBX_Engine/vendor/spdlog"]
 	path = IBX_Engine/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "IBX_Engine/vendor/GLFW"]
+	path = IBX_Engine/vendor/GLFW
+	url = https://github.com/IBXCODECAT/GLFW_FORK

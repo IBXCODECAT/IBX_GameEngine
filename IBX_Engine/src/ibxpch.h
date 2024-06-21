@@ -19,6 +19,9 @@
 #include <unordered_set>
 #include <vector>
 
+// Common macros
+#include "IBX/Log.h"
+
 // Windows specific includes
 #ifdef IBX_PLATFORM_WINDOWS
 	#include <Windows.h>
