@@ -7,3 +7,6 @@
 [submodule "IBX_Engine/vendor/ImGui"]
 	path = IBX_Engine/vendor/ImGui
 	url = https://github.com/IBXCODECAT/IMGUI_FORK
+[submodule "IBX_Engine/vendor/glm"]
+	path = IBX_Engine/vendor/glm
+	url = https://github.com/g-truc/glm

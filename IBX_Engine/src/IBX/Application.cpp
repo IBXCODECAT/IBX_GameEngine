@@ -8,6 +8,8 @@
 
 #include "Input.h"
 
+#include "glm/glm.hpp"
+
 namespace IBX_Engine
 {
 
