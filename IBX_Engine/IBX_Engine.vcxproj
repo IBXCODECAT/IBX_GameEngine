@@ -171,7 +171,6 @@
     <ClInclude Include="src\IBX\MouseButtons.h" />
     <ClInclude Include="src\IBX\Window.h" />
     <ClInclude Include="src\IBX_Engine.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ibxpch.h" />
@@ -594,11 +593,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp" />
+    <ClCompile Include="src\IBX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\IBX\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\IBX\Layers\Layer.cpp" />
     <ClCompile Include="src\IBX\Layers\LayerStack.cpp" />
     <ClCompile Include="src\IBX\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ibxpch.cpp">

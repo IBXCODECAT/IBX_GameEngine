@@ -60,6 +60,8 @@ project "Sandbox"
         -- Include IBX Engine
         "IBX_Engine/src/",
 
+        "IBX_Engine/vendor/",
+
         -- Include glm
         "%{IncludeDir.glm}"
     }

@@ -14,26 +14,20 @@ namespace IBX_Engine
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach();
-		void OnDetach();
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
 
-		void OnUpdate();
-		void OnEvent(Event& e);
+		virtual void OnImGuiRender() override;
 
-	private:
+		/// <summary>
+		/// Begin a new imgui frame
+		/// </summary>
+		void BeginNewFrame();
 
-		// Event handling functions
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-		bool OnMouseMovedEvent(MouseMovedEvent& e);
-		bool OnMouseScrolledEvent(MouseScrolledEvent& e);
-
-		bool OnKeyPressedEvent(KeyPressedEvent& e);
-		bool OnKeyReleasedEvent(KeyReleasedEvent& e);
-		bool OnKeyTypedEvent(KeyTypedEvent& e);
-
-		bool OnWindowResizeEvent(WindowResizeEvent& e);
-
+		/// <summary>
+		/// End the current imgui frame
+		/// </summary>
+		void EndCurrentFrame();
 	private:
 		float m_Time = 0.0f;
 	};

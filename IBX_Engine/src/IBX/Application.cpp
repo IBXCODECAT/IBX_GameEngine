@@ -26,10 +26,14 @@ namespace IBX_Engine
 		m_Window = std::unique_ptr<Window>(Window::Create());
 
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		
+		auto m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);	
 	}
 
 	Application::~Application()
 	{
+
 	}
 
 
@@ -79,13 +83,16 @@ namespace IBX_Engine
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			// Update all layers (from bottom to top)
+			m_ImGuiLayer->BeginNewFrame();
+
+			// Update imgui on all layers (from bottom to top)
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnImGuiRender(); // Draw ImGui
+
+			m_ImGuiLayer->EndCurrentFrame();
 
 			// Update the window
 			m_Window->OnUpdate();
-
 		}
 	}
 

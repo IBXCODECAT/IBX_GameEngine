@@ -14,7 +14,7 @@ rem Run Premake to generate Visual Studio 2022 solution
 rem Notify the user that submodules are being initialized and updated
 echo Initializing and Updating GitHub submodules...
 
-start %~dp0update_submodules.sh
+rem start %~dp0update_submodules.sh
 
 rem Pause the script to allow the user to read the output
 pause

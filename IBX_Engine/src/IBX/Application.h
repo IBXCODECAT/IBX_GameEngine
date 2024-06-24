@@ -6,6 +6,7 @@
 #include "IBX/Events//ApplicationEvent.h";
 
 #include "IBX/Layers/LayerStack.h";
+#include "IBX/ImGui/ImGuiLayer.h";
 
 #include "Window.h"
 
@@ -43,6 +44,8 @@ namespace IBX_Engine
 
 		// Unique pointer allows for automatic memory management (no need to manually delete the pointer)
 		std::unique_ptr<Window> m_Window;
+
+		ImGuiLayer* m_ImGuiLayer;
 
 		// Wether or not the application is running (if false, the application will close)
 		bool m_Running = true;

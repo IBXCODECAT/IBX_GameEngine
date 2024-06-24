@@ -1,5 +1,4 @@
 #include "ibxpch.h";
-
 #include "LayerStack.h"
 
 namespace IBX_Engine
@@ -9,7 +8,6 @@ namespace IBX_Engine
 	// and are later deallocated when the application is closed
 	LayerStack::LayerStack()
 	{
-		m_LayerInsert = m_Layers.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -17,11 +15,12 @@ namespace IBX_Engine
 		for (Layer* layer : m_Layers) delete layer;
 	}
 
-	// Add a layer to the layer stack (Layers are added in the order they are pushed)
+	// Add a layer to the layer stack (Layers are added in the order they are pushed) at begin + index
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		IBX_CORE_DEBUG("Pushing layer: {0}", layer->GetName());
-		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
+		m_LayerInsertIndex++;
 	}
 
 	// Add an overlay to the layer stack (Overlays are added after the layers)
@@ -31,14 +30,14 @@ namespace IBX_Engine
 		m_Layers.emplace_back(overlay);
 	}
 
-	// Remove a layer from the layer stack, this does not delete the layer
+	// Remove a layer from the layer stack, this does not delete the layer but it does move the insert index back
 	void LayerStack::PopLayer(Layer* layer)
 	{
 		auto it = std::find(m_Layers.begin(), m_Layers.end(), layer);
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
-			m_LayerInsert--;
+			m_LayerInsertIndex--;
 		}
 	}
 
