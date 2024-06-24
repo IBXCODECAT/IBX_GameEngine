@@ -2,11 +2,11 @@
 
 #include "Core.h"
 
-#include "IBX/Events//Event.h";
-#include "IBX/Events//ApplicationEvent.h";
+#include "IBX/Events//Event.h"
+#include "IBX/Events//ApplicationEvent.h"
 
-#include "IBX/Layers/LayerStack.h";
-#include "IBX/ImGui/ImGuiLayer.h";
+#include "IBX/Layers/LayerStack.h"
+#include "IBX/ImGui/ImGuiLayer.h"
 
 #include "Window.h"
 

@@ -2,11 +2,16 @@
 
 #ifdef IBX_PLATFORM_WINDOWS
 
+#if IBX_DYNAMIC_LINK
 	#ifdef IBX_BUILD_DLL
 		#define IBX_API __declspec(dllexport)
 	#else
 		#define IBX_API __declspec(dllimport)
 	#endif // IBX_BUILD_DLL
+#else
+	// IBX_API is defined as nothing if IBX_DYNAMIC_LINK is not defined
+	#define IBX_API
+#endif // IBX_DYNAMIC_LINK
 
 #else
 	#error IBX_Engine only supports Windows!

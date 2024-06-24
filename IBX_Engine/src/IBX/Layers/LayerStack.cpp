@@ -1,4 +1,4 @@
-#include "ibxpch.h";
+#include "ibxpch.h"
 #include "LayerStack.h"
 
 namespace IBX_Engine

@@ -30,7 +30,13 @@ project "Sandbox"
     -- Console Application
     kind "ConsoleApp"
 
+    -- C++ Language Settings and Standard
     language "C++"
+    cppdialect "C++17"
+
+    -- Has to do with linking runtime libraries
+    -- Should not be used for dynamic libraries because dynamic linking requires runtime libraries prelinked (can't be static runtime)
+    staticruntime "on"
 
     -- Output directory for our binary
     targetdir ("bin/" ..outputDir .. "/%{prj.name}")
@@ -81,24 +87,35 @@ project "Sandbox"
     -- Only applies to the debug configuration (for any platform)
     filter "configurations:Debug"
         defines "IBX_DEBUG"
-        symbols "On"
+        symbols "on"
     
     -- Only applies to the release configuration (for any platform)
     filter "configurations:Release"
         defines "IBX_RELEASE"
-        optimize "On"
+        optimize "on"
     
     -- Only applies to the dist configuration (for any platform)
     filter "configurations:Dist"
         defines "IBX_DIST"
-        optimize "On"
+        optimize "on"
+
+
+-- ======================================================== IBX Engine Project ======================================================== --
 
 project "IBX_Engine"
     location "IBX_Engine"
     
     -- SharedLib is *.dll Library
-    kind "SharedLib"
-    language "C++"
+    -- StaticLib is *.lib Library
+    kind "StaticLib"
+    
+    -- C++ Language Settings and Standard
+    language "C++" 
+    cppdialect "C++17"
+
+    -- Has to do with linking runtime libraries
+    -- Should not be used for dynamic libraries because dynamic linking requires runtime libraries prelinked (can't be static runtime)
+    staticruntime "on"
 
     -- Output directory for our binary
     targetdir ("bin/" ..outputDir .. "/%{prj.name}")
@@ -122,6 +139,12 @@ project "IBX_Engine"
         -- GLM
         "%{prj.name}/vendor/glm/glm/**.hpp",
         "%{prj.name}/vendor/glm/glm/**.inl"
+    }
+
+    defines
+    {
+        -- Suppresses warnings for the CRT Secure Warnings
+        "_CRT_SECURE_NO_WARNINGS"
     }
 
     -- Include directories
@@ -163,11 +186,9 @@ project "IBX_Engine"
 
     -- The following only applies to windows until another filter is reached
     filter "system:windows"
-        -- 
-        cppdialect "C++17"
 
         -- Has to do with linking runtime libraries
-        staticruntime "On"
+        staticruntime "on"
 
         -- Premake will Default to Windows 8.1 SDK, this ensures it will use the latest sdk version
         systemversion "latest"
@@ -180,26 +201,17 @@ project "IBX_Engine"
             "GLFW_INCLUDE_NONE" -- Prevents GLFW from including OpenGL headers
         }
 
-        -- After we build the project run the following
-        postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputDir .. "/Sandbox/\"")
-		}
-
     -- Only applies to the debug configuration (for any platform)
     filter "configurations:Debug"
         defines "IBX_DEBUG"
-        symbols "On"
-        buildoptions "/MDd" -- /MDd for dynamic linking debug
+        symbols "on"
     
     -- Only applies to the release configuration (for any platform)
     filter "configurations:Release"
         defines "IBX_RELEASE"
-        optimize "On"
-        buildoptions "/MD" -- /MD for dynamic linking
+        optimize "on"
     
     -- Only applies to the dist configuration (for any platform)
     filter "configurations:Dist"
         defines "IBX_DIST"
-        optimize "On"
-        buildoptions "/MD" -- /MD for dynamic linking
+        optimize "on"
