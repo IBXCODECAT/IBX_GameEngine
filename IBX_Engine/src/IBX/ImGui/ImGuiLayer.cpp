@@ -3,7 +3,7 @@
 #include "ImGuiLayer.h";
 
 #include "imgui.h";
-#include "IBX/Platform/OpenGL/ImGuiOpenGLRenderer.h";
+#include "Platform/OpenGL/ImGuiOpenGLRenderer.h";
 
 #include "IBX/Application.h";
 

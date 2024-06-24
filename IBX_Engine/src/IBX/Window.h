@@ -39,6 +39,12 @@ namespace IBX_Engine
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
+		/// <summary>
+		/// Returns a Window
+		/// </summary>
+		/// <returns></returns>
+		virtual void* GetNativeWindow() const = 0;
+
 		// Must be implemented per platform (Windows, Mac, Linux, iOS, Android, etc.)
 		static Window* Create(const WindowProps& props = WindowProps());
 	};

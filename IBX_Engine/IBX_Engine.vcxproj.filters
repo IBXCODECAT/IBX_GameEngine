@@ -13,14 +13,14 @@
     <Filter Include="IBX\Layers">
       <UniqueIdentifier>{0728C075-F3DF-01C3-5CE7-DA1E48BE9CB3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="IBX\Platform">
-      <UniqueIdentifier>{9C3F3FAF-88A2-CE53-3128-070A1D6A9AD6}</UniqueIdentifier>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="IBX\Platform\OpenGL">
-      <UniqueIdentifier>{50C13C40-BC22-1A4E-4590-6000B1F0500D}</UniqueIdentifier>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="IBX\Platform\Windows">
-      <UniqueIdentifier>{D6C5F09F-C254-7A69-6B73-8E6457E18A0F}</UniqueIdentifier>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,17 +57,19 @@
     <ClInclude Include="src\IBX\Log.h">
       <Filter>IBX</Filter>
     </ClInclude>
-    <ClInclude Include="src\IBX\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>IBX\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Platform\Windows\WindowsWindow.h">
-      <Filter>IBX\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\IBX\Window.h">
       <Filter>IBX</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX_Engine.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\ibxpch.h" />
+    <ClInclude Include="src\IBX\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
@@ -85,12 +87,13 @@
     <ClCompile Include="src\IBX\Log.cpp">
       <Filter>IBX</Filter>
     </ClCompile>
-    <ClCompile Include="src\IBX\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>IBX\Platform\OpenGL</Filter>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\IBX\Platform\Windows\WindowsWindow.cpp">
-      <Filter>IBX\Platform\Windows</Filter>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\ibxpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

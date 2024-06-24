@@ -6,6 +6,8 @@
 
 #include <Glad/glad.h>
 
+#include "Input.h"
+
 namespace IBX_Engine
 {
 
@@ -81,6 +83,9 @@ namespace IBX_Engine
 
 			// Update the window
 			m_Window->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
+			IBX_CORE_TRACE("Mouse Input Test {0}, {1}", x, y);
 		}
 	}
 
