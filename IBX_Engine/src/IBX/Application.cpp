@@ -34,7 +34,7 @@ namespace IBX_Engine
 	void Application::OnEvent(Event& e)
 	{
 		// Uncomment for debugging
-		IBX_CORE_TRACE("{0}", e);
+		//	IBX_CORE_TRACE("{0}", e);
 
 		EventDispatcher dispatcher(e);
 
@@ -84,8 +84,6 @@ namespace IBX_Engine
 			// Update the window
 			m_Window->OnUpdate();
 
-			auto [x, y] = Input::GetMousePosition();
-			IBX_CORE_TRACE("Mouse Input Test {0}, {1}", x, y);
 		}
 	}
 

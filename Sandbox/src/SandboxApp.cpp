@@ -10,14 +10,22 @@ public:
 
 	void OnUpdate() override
 	{
-		IBX_CORE_TRACE("ExampleLayer::Update");
+		// IBX_CORE_TRACE("ExampleLayer::Update");
+
+		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_TAB))
+			IBX_CLIENT_TRACE("Tab key is pressed!");
 	}
 
 	void OnEvent(IBX_Engine::Event& event) override
 	{
-		IBX_CORE_INFO("{0}", event);
-	}
+		// IBX_CORE_INFO("{0}", event);
 
+		if (event.GetEventType() == IBX_Engine::EventType::KeyPressed)
+		{
+			IBX_Engine::KeyReleasedEvent& e = (IBX_Engine::KeyReleasedEvent&)event;
+			IBX_CLIENT_TRACE("{0}", (char)e.GetKeyCode());
+		}
+	}
 };
 
 class Sandbox : public IBX_Engine::Application

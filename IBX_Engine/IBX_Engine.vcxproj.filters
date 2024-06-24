@@ -48,6 +48,9 @@
     <ClInclude Include="src\IBX\ImGui\ImGuiLayer.h">
       <Filter>IBX\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Input.h">
+      <Filter>IBX</Filter>
+    </ClInclude>
     <ClInclude Include="src\IBX\Layers\Layer.h">
       <Filter>IBX\Layers</Filter>
     </ClInclude>
@@ -64,12 +67,15 @@
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\ibxpch.h" />
-    <ClInclude Include="src\IBX\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\IBX\KeyCodes.h" />
+    <ClInclude Include="src\IBX\MouseButtons.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
@@ -90,10 +96,12 @@
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\ibxpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>
