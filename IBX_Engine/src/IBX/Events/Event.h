@@ -18,7 +18,7 @@ namespace IBX_Engine
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -75,6 +75,10 @@ namespace IBX_Engine
 		EventDispatcher(Event& event) : m_Event(event) {}
 
 		template<typename T>
+		
+		/// <summary>
+		/// Dispatches the event to the function if the event is of type T.
+		/// </summary>
 		bool Dispatch(EventFn<T> func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())

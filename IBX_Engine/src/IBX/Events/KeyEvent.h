@@ -57,6 +57,23 @@ namespace IBX_Engine {
 
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
+
+	class IBX_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keycode) : KeyEvent(keycode) {}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	private:
+		int m_RepeatCount;
+	};
 }
 
 // Include this after your class definitions to provide formatter specializations

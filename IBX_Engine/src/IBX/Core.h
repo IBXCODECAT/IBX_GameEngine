@@ -22,3 +22,5 @@
 
 // BIT(x) is a macro that shifts 1 by x bits to the left
 #define BIT(x) (1 << x)
+
+#define IBX_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

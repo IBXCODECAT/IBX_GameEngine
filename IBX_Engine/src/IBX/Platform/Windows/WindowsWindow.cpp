@@ -120,6 +120,16 @@ namespace IBX_Engine {
 			}
 		});
 
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode) {
+
+			// Get window data from GLFW window
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			// Create and dispatch key typed event
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
+		});
+
 		// Set GLFW callbacks - mouse button
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
 
