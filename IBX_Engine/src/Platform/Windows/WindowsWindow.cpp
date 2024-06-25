@@ -6,8 +6,7 @@
 #include "IBX/Events/MouseEvent.h"
 #include "IBX/Events/KeyEvent.h"
 
-
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace IBX_Engine {
 
@@ -41,6 +40,7 @@ namespace IBX_Engine {
 
 		IBX_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
+
 		if (!s_GLFWInitialized)
 		{
 			// TODO: glfwTerminate on system shutdown
@@ -55,12 +55,12 @@ namespace IBX_Engine {
 
 		// Create window and set opengl context
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
 
-		// Initialize Glad (OpenGL loader)
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		IBX_CORE_ASSERT(status, "Failed to initialize Glad!");
+		// Create and initialize OpenGL context
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -187,7 +187,7 @@ namespace IBX_Engine {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
