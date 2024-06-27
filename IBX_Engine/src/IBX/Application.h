@@ -52,6 +52,9 @@ namespace IBX_Engine
 
 		// LayerStack is owned by the application
 		LayerStack m_LayerStack;
+
+	private:
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 	};
 
 	// To be defined in CLIENT

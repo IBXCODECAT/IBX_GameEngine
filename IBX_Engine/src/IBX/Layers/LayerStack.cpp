@@ -18,7 +18,7 @@ namespace IBX_Engine
 	// Add a layer to the layer stack (Layers are added in the order they are pushed) at begin + index
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		IBX_CORE_DEBUG("Pushing layer: {0}", layer->GetName());
+		IBX_CORE_TRACE("Pushing layer: {0}", layer->GetName());
 		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
 		m_LayerInsertIndex++;
 	}
@@ -26,7 +26,7 @@ namespace IBX_Engine
 	// Add an overlay to the layer stack (Overlays are added after the layers)
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
-		IBX_CORE_DEBUG("Pushing overlay: {0}", overlay->GetName());
+		IBX_CORE_TRACE("Pushing overlay: {0}", overlay->GetName());
 		m_Layers.emplace_back(overlay);
 	}
 
