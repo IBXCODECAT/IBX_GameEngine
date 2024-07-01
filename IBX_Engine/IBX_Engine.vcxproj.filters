@@ -1362,6 +1362,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
@@ -1394,5 +1395,6 @@
     <ClCompile Include="src\ibxpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\IBX\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>

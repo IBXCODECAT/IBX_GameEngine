@@ -8,6 +8,9 @@
 #include "IBX/Layers/LayerStack.h"
 #include "IBX/ImGui/ImGuiLayer.h"
 
+
+#include "IBX/Renderer/Shader.h"
+
 #include "Window.h"
 
 namespace IBX_Engine
@@ -55,6 +58,8 @@ namespace IBX_Engine
 
 	private:
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+
+		std::unique_ptr<Shader> m_Shader;
 	};
 
 	// To be defined in CLIENT
