@@ -17,9 +17,10 @@
 	#error IBX_Engine only supports Windows!
 #endif // IBX_PLATFORM_WINDOWS
 
-#ifdef HZ_ENABLE_ASSERTS
-#define IBX_CLIENT_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#define IBX_CORE_ASSERT(x, ...) { if(!(x)) { HZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define IBX_ENABLE_ASSERTS
+#ifdef IBX_ENABLE_ASSERTS
+#define IBX_CLIENT_ASSERT(x, ...) { if(!(x)) { IBX_CLIENT_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define IBX_CORE_ASSERT(x, ...) { if(!(x)) { IBX_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
 #define IBX_CLIENT_ASSERT(x, ...)
 #define IBX_CORE_ASSERT(x, ...)
