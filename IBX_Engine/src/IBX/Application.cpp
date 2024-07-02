@@ -200,17 +200,14 @@ namespace IBX_Engine
 			RenderCommand::SetClearColor({ 1.0f, 0.0f, 1.0f, 1 });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
+			m_Camera.SetRotation(45.0f);
 
-			m_BlueShader->Bind();
-			m_BlueShader->UploadUniformMat4("u_ViewProjection", m_Camera.GetViewProjectionMatrix());
-			Renderer::Submit(m_SquareVA);
+			Renderer::BeginScene(m_Camera);
 
-			// Bind the shader
-			m_Shader->Bind();
-			m_Shader->UploadUniformMat4("u_ViewProjection", m_Camera.GetViewProjectionMatrix());
-			Renderer::Submit(m_VertexArray);
-
+			Renderer::Submit(m_BlueShader, m_SquareVA);
+			Renderer::Submit(m_Shader, m_VertexArray);
+			
 			Renderer::EndScene();
 
 			// Update all layers (from bottom to top)
