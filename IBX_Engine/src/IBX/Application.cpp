@@ -7,7 +7,6 @@
 
 #include "Input.h"
 
-
 namespace IBX_Engine
 {
 
@@ -15,7 +14,7 @@ namespace IBX_Engine
 	
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application() : m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		IBX_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -89,7 +88,7 @@ namespace IBX_Engine
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 			
-			//layout(location = 2) in vec3 a_Normal;
+			uniform mat4 u_ViewProjection;
 			
 			out vec3 v_Position;
 			out vec4 v_Color;
@@ -99,7 +98,7 @@ namespace IBX_Engine
 				v_Position = a_Position;
 				v_Color = a_Color;
 
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -126,9 +125,11 @@ namespace IBX_Engine
 
 			layout(location = 0) in vec3 a_Position;
 
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -202,10 +203,12 @@ namespace IBX_Engine
 			Renderer::BeginScene();
 
 			m_BlueShader->Bind();
+			m_BlueShader->UploadUniformMat4("u_ViewProjection", m_Camera.GetViewProjectionMatrix());
 			Renderer::Submit(m_SquareVA);
 
 			// Bind the shader
 			m_Shader->Bind();
+			m_Shader->UploadUniformMat4("u_ViewProjection", m_Camera.GetViewProjectionMatrix());
 			Renderer::Submit(m_VertexArray);
 
 			Renderer::EndScene();

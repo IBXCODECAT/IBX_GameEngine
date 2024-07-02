@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Window.h"
 
 #include "IBX/Events//Event.h"
 #include "IBX/Events//ApplicationEvent.h"
@@ -12,7 +13,8 @@
 #include "IBX/Renderer/Buffer.h"
 #include "IBX/Renderer/VertexArray.h"
 
-#include "Window.h"
+#include "IBX/Renderer/OrthographicCamera.h"
+
 
 namespace IBX_Engine
 {
@@ -63,6 +65,8 @@ namespace IBX_Engine
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	};
 
 	// To be defined in CLIENT

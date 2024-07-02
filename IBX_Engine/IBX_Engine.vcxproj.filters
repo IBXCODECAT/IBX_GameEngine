@@ -1386,6 +1386,7 @@
     <ClInclude Include="src\IBX\Renderer\RendererAPI.h" />
     <ClInclude Include="src\IBX\Renderer\RenderCommand.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\IBX\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
@@ -1439,5 +1440,6 @@
     <ClCompile Include="src\IBX\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\IBX\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\IBX\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
