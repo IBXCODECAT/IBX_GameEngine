@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IBX/Core.h"
+#include "IBX/Core/Timestep.h"
 #include "IBX/Events/Event.h"
 
 namespace IBX_Engine
@@ -13,7 +14,7 @@ namespace IBX_Engine
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 
 		virtual void OnImGuiRender() {}
 

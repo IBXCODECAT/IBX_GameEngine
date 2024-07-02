@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"
-#include "Window.h"
+#include "Core/Window.h"
 
 #include "IBX/Events//Event.h"
 #include "IBX/Events//ApplicationEvent.h"
@@ -15,6 +15,7 @@
 
 #include "IBX/Renderer/OrthographicCamera.h"
 
+#include "IBX/Core/Timestep.h"
 
 namespace IBX_Engine
 {
@@ -54,6 +55,9 @@ namespace IBX_Engine
 
 		// LayerStack is owned by the application
 		LayerStack m_LayerStack;
+
+		// Time between frames
+		float m_LastFrameTime = 0.0f;
 
 	private:
 		// Static pointer to the application instance

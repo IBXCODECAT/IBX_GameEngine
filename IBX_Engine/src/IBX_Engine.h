@@ -14,6 +14,11 @@
 
 #include "IBX/ImGui/ImGuiLayer.h"
 
+// ---------------Core----------------------
+#include "IBX/Core//Timestep.h"
+#include "IBX/Core/Window.h"
+// -----------------------------------------
+
 // ---------------Renderer-------------------
 #include "IBX/Renderer/Buffer.h"
 #include "IBX/Renderer/OrthographicCamera.h"

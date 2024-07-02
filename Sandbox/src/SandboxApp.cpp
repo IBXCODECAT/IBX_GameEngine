@@ -129,34 +129,35 @@ public:
 		m_BlueShader.reset(new IBX_Engine::Shader(blueShaderVertexSrc, blueShaderFragmentsrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(IBX_Engine::Timestep ts) override
 	{
+		//IBX_CLIENT_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
 
 		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_A))
 		{
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		}
 		else if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_D))
 		{
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		}
 
 		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_W))
 		{
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		} 
 		else if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_S))
 		{
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 		}
 
 		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_Q))
 		{
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 		}
 		else if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_E))
 		{
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 		}
 
 		IBX_Engine::RenderCommand::SetClearColor({ 1.0f, 0.0f, 1.0f, 1 });
@@ -195,8 +196,8 @@ private:
 	glm::vec3 m_CameraPosition;
 	
 	float m_CameraRotation = 0.0f;
-	float m_CameraMoveSpeed = 0.05f;
-	float m_CameraRotationSpeed = 0.5f;
+	float m_CameraMoveSpeed = 1.0f;
+	float m_CameraRotationSpeed = 25.0f;
 
 };
 

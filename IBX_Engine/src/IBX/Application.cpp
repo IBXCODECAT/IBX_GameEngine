@@ -7,6 +7,9 @@
 
 #include "Input.h"
 
+// TEMPORARY
+#include <GLFW/glfw3.h>
+
 namespace IBX_Engine
 {
 
@@ -74,10 +77,14 @@ namespace IBX_Engine
 	{
 		while (m_Running)
 		{
-			
+			float time = (float)glfwGetTime(); // Platform::GetTime()
+
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			// Update all layers (from bottom to top)
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(); // Update the layer
+				layer->OnUpdate(timestep); // Update the layer
 
 
 			m_ImGuiLayer->BeginNewFrame();
