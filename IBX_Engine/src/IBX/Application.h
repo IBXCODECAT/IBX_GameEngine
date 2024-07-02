@@ -42,10 +42,6 @@ namespace IBX_Engine
 
 
 	private:
-
-		// Static pointer to the application instance
-		static Application* s_Instance;
-
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		// Unique pointer allows for automatic memory management (no need to manually delete the pointer)
@@ -60,13 +56,8 @@ namespace IBX_Engine
 		LayerStack m_LayerStack;
 
 	private:
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
+		// Static pointer to the application instance
+		static Application* s_Instance;
 	};
 
 	// To be defined in CLIENT
