@@ -105,10 +105,16 @@
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.h">
       <Filter>src\IBX\Renderer\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\IBX\Renderer\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\IBX\Renderer\Renderer.h">
       <Filter>src\IBX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Renderer\Shader.h">
+      <Filter>src\IBX\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\VertexArray.h">
       <Filter>src\IBX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Window.h">
@@ -1377,8 +1383,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\IBX\Renderer\VertexArray.h" />
-    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\IBX\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\IBX\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">
@@ -1405,10 +1412,16 @@
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\IBX\Renderer\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\IBX\Renderer\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\IBX\Renderer\Renderer.cpp">
       <Filter>src\IBX\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\IBX\Renderer\Shader.cpp">
+      <Filter>src\IBX\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Renderer\VertexArray.cpp">
       <Filter>src\IBX\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
@@ -1423,7 +1436,8 @@
     <ClCompile Include="src\ibxpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\IBX\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\IBX\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\IBX\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp" />
   </ItemGroup>
 </Project>

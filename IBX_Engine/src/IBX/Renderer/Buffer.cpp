@@ -1,7 +1,8 @@
 #include "ibxpch.h"
-
 #include "Buffer.h"
-#include "IBX/Renderer/OpenGL//OpenGLBuffer.h"
+
+#include "Renderer.h"
+#include "OpenGL/OpenGLBuffer.h"
 
 namespace IBX_Engine
 {
@@ -9,8 +10,8 @@ namespace IBX_Engine
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:	IBX_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::API::None:	IBX_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		IBX_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -21,8 +22,8 @@ namespace IBX_Engine
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:	IBX_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::OpenGL:  return new OpenGLIndexBuffer(indices, count);
+			case RendererAPI::API::None:	IBX_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:  return new OpenGLIndexBuffer(indices, count);
 		}
 
 		IBX_CORE_ASSERT(false, "Unknown RendererAPI!");

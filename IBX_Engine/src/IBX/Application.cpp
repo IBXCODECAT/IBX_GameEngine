@@ -2,13 +2,10 @@
 
 #include "Application.h"
 
-#include "IBX/Log.h"
-
-#include <Glad/glad.h>
+// Include renderer API
+#include "IBX/Renderer/Renderer.h"
 
 #include "Input.h"
-
-#include "glm/glm.hpp"
 
 
 namespace IBX_Engine
@@ -199,22 +196,24 @@ namespace IBX_Engine
 	{
 		while (m_Running)
 		{
-			// Clear the screen
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 1.0f, 0.0f, 1.0f, 1 });
+			RenderCommand::Clear();
 
-			m_SquareVA->Bind();
+			Renderer::BeginScene();
+
 			m_BlueShader->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_SquareVA);
 
 			// Bind the shader
 			m_Shader->Bind();
+			Renderer::Submit(m_VertexArray);
 
-			// Bind the vertex array
-			m_VertexArray->Bind();
+			Renderer::EndScene();
 
-			//glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			// Update all layers (from bottom to top)
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate(); // Update the layer
+
 
 			m_ImGuiLayer->BeginNewFrame();
 

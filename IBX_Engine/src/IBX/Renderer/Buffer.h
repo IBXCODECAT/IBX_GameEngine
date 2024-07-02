@@ -1,7 +1,5 @@
 #pragma once
 
-#include "IBX/Renderer/Renderer.h"
-
 namespace IBX_Engine
 {
 	enum class ShaderDataType : uint8_t

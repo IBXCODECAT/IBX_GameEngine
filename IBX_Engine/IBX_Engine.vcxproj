@@ -143,6 +143,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\IBX\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\IBX\Renderer\RendererAPI.h" />
     <ClInclude Include="src\IBX\Application.h" />
     <ClInclude Include="src\IBX\Core.h" />
     <ClInclude Include="src\IBX\EntryPoint.h" />
@@ -588,6 +591,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\IBX\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\IBX\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\IBX\Application.cpp" />
     <ClCompile Include="src\IBX\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\IBX\ImGui\ImGuiLayer.cpp" />
