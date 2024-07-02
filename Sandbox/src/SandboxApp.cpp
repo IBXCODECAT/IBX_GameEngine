@@ -3,7 +3,7 @@
 class ExampleLayer : public IBX_Engine::Layer
 {
 public:
-	ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+	ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
 		m_VertexArray.reset(IBX_Engine::VertexArray::Create());
 
@@ -131,11 +131,39 @@ public:
 
 	void OnUpdate() override
 	{
+
+		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_A))
+		{
+			m_CameraPosition.x -= m_CameraMoveSpeed;
+		}
+		else if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_D))
+		{
+			m_CameraPosition.x += m_CameraMoveSpeed;
+		}
+
+		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_W))
+		{
+			m_CameraPosition.y += m_CameraMoveSpeed;
+		} 
+		else if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_S))
+		{
+			m_CameraPosition.y -= m_CameraMoveSpeed;
+		}
+
+		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_Q))
+		{
+			m_CameraRotation += m_CameraRotationSpeed;
+		}
+		else if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_E))
+		{
+			m_CameraRotation -= m_CameraRotationSpeed;
+		}
+
 		IBX_Engine::RenderCommand::SetClearColor({ 1.0f, 0.0f, 1.0f, 1 });
 		IBX_Engine::RenderCommand::Clear();
 
-		m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
-		m_Camera.SetRotation(45.0f);
+		m_Camera.SetPosition(m_CameraPosition);
+		m_Camera.SetRotation(m_CameraRotation);
 
 		IBX_Engine::Renderer::BeginScene(m_Camera);
 
@@ -152,7 +180,7 @@ public:
 
 	void OnEvent(IBX_Engine::Event& event) override
 	{
-		
+
 	}
 
 private:
@@ -163,6 +191,13 @@ private:
 	std::shared_ptr<IBX_Engine::VertexArray> m_SquareVA;
 
 	IBX_Engine::OrthographicCamera m_Camera;
+
+	glm::vec3 m_CameraPosition;
+	
+	float m_CameraRotation = 0.0f;
+	float m_CameraMoveSpeed = 0.05f;
+	float m_CameraRotationSpeed = 0.5f;
+
 };
 
 class Sandbox : public IBX_Engine::Application
