@@ -67,9 +67,27 @@ namespace IBX_Engine
         /// <param name="blue">Blue (0-255)</param>
         /// <param name="alpha">Alpha (0-255) [DEFAULT 255]</param>
         Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 255) : m_Red(red), m_Green(green), m_Blue(blue), m_Alpha(alpha) {}
+
+        /// <summary>
+        /// Constructs a Color object with the given glm::vec4 color
+        /// </summary>
+        /// <param name="color">Color Vector (0-1 magnitude)</param>
+        Color(glm::vec4 color) : m_Red(color.r * 255), m_Green(color.g * 255), m_Blue(color.b * 255), m_Alpha(color.a * 255) { }
+
+        /// <summary>
+        /// Constructs a Color object with the given glm::vec3 color
+        /// </summary>
+        /// <param name="color">Color Vector (0-1 magnitude)</param>
+        Color(glm::vec3 color) : m_Red(color.r * 255), m_Green(color.g * 255), m_Blue(color.b * 255), m_Alpha(255) { }
+
         ~Color() { }
 
         // Casting operator to glm::vec3
+        operator glm::vec3() const {
+            return glm::vec3(static_cast<float>(m_Red) / 255.0f, static_cast<float>(m_Green) / 255.0f, static_cast<float>(m_Blue) / 255.0f);
+        }
+
+        // Casting operator to glm::vec4
         operator glm::vec4() const {
             return glm::vec4(static_cast<float>(m_Red) / 255.0f, static_cast<float>(m_Green) / 255.0f, static_cast<float>(m_Blue) / 255.0f, static_cast<float>(m_Alpha) / 255.0f);
         }

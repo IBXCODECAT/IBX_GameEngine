@@ -7,12 +7,14 @@
 #include "IBX/Layers/Layer.h"
 #include "IBX/Log.h"
 
-// Input
+
 #include "IBX/Input.h"
 #include "IBX/KeyCodes.h"
 #include "IBX/MouseButtons.h"
 
+// ---------------ImGui---------------------
 #include "IBX/ImGui/ImGuiLayer.h"
+// -----------------------------------------
 
 // ---------------Core----------------------
 #include "IBX/Core/Color.h"

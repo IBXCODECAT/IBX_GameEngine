@@ -1,5 +1,11 @@
+#include "IBX/Renderer/OpenGL/OpenGLShader.h"
+
 #include <IBX_Engine.h>
+
+#include <ImGui/imgui.h>
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public IBX_Engine::Layer
 {
@@ -61,7 +67,7 @@ public:
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		// Shader
-		std::string vertexSrc = R"(
+		std::string vertexSRC = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
@@ -82,7 +88,7 @@ public:
 			}
 		)";
 
-		std::string fragmentSrc = R"(
+		std::string fragmentSRC = R"(
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
@@ -121,16 +127,16 @@ public:
 
 			in vec3 v_Position;
 
-			uniform vec4 u_Color;
+			uniform vec3 u_Color;
 
 			void main()
 			{
-				color = u_Color;
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_Shader.reset(new IBX_Engine::Shader(vertexSrc, fragmentSrc));
-		m_FlatColorShader.reset(new IBX_Engine::Shader(flatColorShaderVertexSRC, flatColorShaderFragmentSRC));
+		m_Shader.reset(IBX_Engine::Shader::Create(vertexSRC, fragmentSRC));
+		m_FlatColorShader.reset(IBX_Engine::Shader::Create(flatColorShaderVertexSRC, flatColorShaderFragmentSRC));
 	}
 
 	void OnUpdate(IBX_Engine::Timestep ts) override
@@ -193,21 +199,16 @@ public:
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+
+		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", IBX_Engine::Color::Color(m_SquareColor));
+
 		for (int x = 0; x < 25; x++)
-		{	
+		{		
 			for (int y = 0; y < 25; y++)
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 special_transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-
-				if (x % 2)
-				{
-					m_FlatColorShader->UploadUniformFloat4("u_Color", IBX_Engine::Color::Blue);
-				}
-				else
-				{
-					m_FlatColorShader->UploadUniformFloat4("u_Color", IBX_Engine::Color::Red);
-				}
 				
 				IBX_Engine::Renderer::Submit(m_FlatColorShader, m_SquareVA, special_transform);
 			}
@@ -220,7 +221,9 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(IBX_Engine::Event& event) override
@@ -238,6 +241,8 @@ private:
 	IBX_Engine::OrthographicCamera m_Camera;
 
 	glm::vec3 m_CameraPosition;
+
+	glm::vec3 m_SquareColor;
 	
 	float m_CameraRotation = 0.0f;
 	float m_CameraMoveSpeed = 1.0f;
