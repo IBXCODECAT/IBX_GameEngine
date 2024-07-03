@@ -1388,6 +1388,7 @@
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\IBX\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\IBX\Core\Timestep.h" />
+    <ClInclude Include="src\IBX\Core\Color.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Application.cpp">

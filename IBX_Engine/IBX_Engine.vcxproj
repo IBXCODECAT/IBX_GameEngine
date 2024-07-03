@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\IBX\Core\Color.h" />
     <ClInclude Include="src\IBX\Core\Timestep.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\IBX\Renderer\OrthographicCamera.h" />

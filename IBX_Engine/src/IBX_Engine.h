@@ -15,6 +15,7 @@
 #include "IBX/ImGui/ImGuiLayer.h"
 
 // ---------------Core----------------------
+#include "IBX/Core/Color.h"
 #include "IBX/Core//Timestep.h"
 #include "IBX/Core/Window.h"
 // -----------------------------------------

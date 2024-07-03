@@ -100,7 +100,7 @@ public:
 		)";
 
 		// Shader
-		std::string blueShaderVertexSrc = R"(
+		std::string flatColorShaderVertexSRC = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
@@ -114,22 +114,23 @@ public:
 			}
 		)";
 
-		std::string blueShaderFragmentsrc = R"(
+		std::string flatColorShaderFragmentSRC = R"(
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
 
 			in vec3 v_Position;
 
+			uniform vec4 u_Color;
+
 			void main()
 			{
-				// vpos gets halved and then shifted to the right by 0.5 making the range 0-1
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = u_Color;
 			}
 		)";
 
 		m_Shader.reset(new IBX_Engine::Shader(vertexSrc, fragmentSrc));
-		m_BlueShader.reset(new IBX_Engine::Shader(blueShaderVertexSrc, blueShaderFragmentsrc));
+		m_FlatColorShader.reset(new IBX_Engine::Shader(flatColorShaderVertexSRC, flatColorShaderFragmentSRC));
 	}
 
 	void OnUpdate(IBX_Engine::Timestep ts) override
@@ -192,13 +193,24 @@ public:
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		for (int i = 0; i < 5; i++)
+		for (int x = 0; x < 25; x++)
 		{	
-			glm::vec3 pos(i * 0.11f, 0.0f, 0.0f);
-			glm::mat4 special_transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+			for (int y = 0; y < 25; y++)
+			{
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 special_transform = glm::translate(glm::mat4(1.0f), pos) * scale;
 
-			IBX_Engine::Renderer::Submit(m_BlueShader, m_SquareVA, special_transform);
-
+				if (x % 2)
+				{
+					m_FlatColorShader->UploadUniformFloat4("u_Color", IBX_Engine::Color::Blue);
+				}
+				else
+				{
+					m_FlatColorShader->UploadUniformFloat4("u_Color", IBX_Engine::Color::Red);
+				}
+				
+				IBX_Engine::Renderer::Submit(m_FlatColorShader, m_SquareVA, special_transform);
+			}
 		}
 		
 		IBX_Engine::Renderer::Submit(m_Shader, m_VertexArray, transform);
@@ -220,7 +232,7 @@ private:
 	std::shared_ptr<IBX_Engine::Shader> m_Shader;
 	std::shared_ptr<IBX_Engine::VertexArray> m_VertexArray;
 
-	std::shared_ptr<IBX_Engine::Shader> m_BlueShader;
+	std::shared_ptr<IBX_Engine::Shader> m_FlatColorShader;
 	std::shared_ptr<IBX_Engine::VertexArray> m_SquareVA;
 
 	IBX_Engine::OrthographicCamera m_Camera;
