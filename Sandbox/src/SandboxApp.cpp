@@ -21,7 +21,7 @@ public:
 		};
 
 		// Vertex Buffer Object
-		std::shared_ptr<IBX_Engine::VertexBuffer> vertexBuffer;
+		IBX_Engine::Ref<IBX_Engine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(IBX_Engine::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		IBX_Engine::BufferLayout layout = {
@@ -37,7 +37,7 @@ public:
 		unsigned int indices[3] = { 0, 1, 2 };
 
 		// Index Buffer 
-		std::shared_ptr<IBX_Engine::IndexBuffer> indexBuffer;
+		IBX_Engine::Ref<IBX_Engine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(IBX_Engine::IndexBuffer::Create(indices, 3));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -51,11 +51,11 @@ public:
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
 		m_SquareVA.reset(IBX_Engine::VertexArray::Create());
-		std::shared_ptr<IBX_Engine::VertexBuffer> squareVB;
+		IBX_Engine::Ref<IBX_Engine::VertexBuffer> squareVB;
 
 		squareVB.reset(IBX_Engine::VertexBuffer::Create(squareVerts, sizeof(squareVerts)));
 
-		std::shared_ptr<IBX_Engine::IndexBuffer> squareIB;
+		IBX_Engine::Ref<IBX_Engine::IndexBuffer> squareIB;
 		squareIB.reset(IBX_Engine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 
 		IBX_Engine::BufferLayout layout2 = {
@@ -232,17 +232,17 @@ public:
 	}
 
 private:
-	std::shared_ptr<IBX_Engine::Shader> m_Shader;
-	std::shared_ptr<IBX_Engine::VertexArray> m_VertexArray;
+	IBX_Engine::Ref<IBX_Engine::Shader> m_Shader;
+	IBX_Engine::Ref<IBX_Engine::VertexArray> m_VertexArray;
 
-	std::shared_ptr<IBX_Engine::Shader> m_FlatColorShader;
-	std::shared_ptr<IBX_Engine::VertexArray> m_SquareVA;
+	IBX_Engine::Ref<IBX_Engine::Shader> m_FlatColorShader;
+	IBX_Engine::Ref<IBX_Engine::VertexArray> m_SquareVA;
 
 	IBX_Engine::OrthographicCamera m_Camera;
 
 	glm::vec3 m_CameraPosition;
 
-	glm::vec3 m_SquareColor;
+	glm::vec3 m_SquareColor = IBX_Engine::Color::Green;
 	
 	float m_CameraRotation = 0.0f;
 	float m_CameraMoveSpeed = 1.0f;
