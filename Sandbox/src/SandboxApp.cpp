@@ -12,40 +12,11 @@ class ExampleLayer : public IBX_Engine::Layer
 public:
 	ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_SquarePosition(0.0f)
 	{
-		m_VertexArray.reset(IBX_Engine::VertexArray::Create());
-
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 1, 0, 1, 1,
-			 0.5f, -0.5f, 0.0f, 0, 1, 1, 1,
-			 0.0f,  0.5f, 0.0f, 1, 1, 0, 1,
-		};
-
-		// Vertex Buffer Object
-		IBX_Engine::Ref<IBX_Engine::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(IBX_Engine::VertexBuffer::Create(vertices, sizeof(vertices)));
-
-		IBX_Engine::BufferLayout layout = {
-			{ IBX_Engine::ShaderDataType::Float3, "a_Position" },
-			{ IBX_Engine::ShaderDataType::Float4, "a_Color" },
-			//{ ShaderDataType::Float3, "a_Normal"}
-		};
-
-		// Vertex Buffer
-		vertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(vertexBuffer);
-
-		unsigned int indices[3] = { 0, 1, 2 };
-
-		// Index Buffer 
-		IBX_Engine::Ref<IBX_Engine::IndexBuffer> indexBuffer;
-		indexBuffer.reset(IBX_Engine::IndexBuffer::Create(indices, 3));
-		m_VertexArray->SetIndexBuffer(indexBuffer);
-
-		float squareVerts[3 * 7] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
+		float squareVerts[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0, 0, // Bottom Left
+			 0.5f, -0.5f, 0.0f, 1, 0, // Bottom Right
+			 0.5f,  0.5f, 0.0f, 1, 1, // Top Right
+			-0.5f,  0.5f, 0.0f, 0, 1  // Top Left
 		};
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -58,52 +29,14 @@ public:
 		IBX_Engine::Ref<IBX_Engine::IndexBuffer> squareIB;
 		squareIB.reset(IBX_Engine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 
-		IBX_Engine::BufferLayout layout2 = {
+		IBX_Engine::BufferLayout squareBufferLayout = {
 			{ IBX_Engine::ShaderDataType::Float3, "a_Position" },
+			{ IBX_Engine::ShaderDataType::Float2, "a_TexCoord" }
 		};
 
-		squareVB->SetLayout(layout2);
+		squareVB->SetLayout(squareBufferLayout);
 		m_SquareVA->AddVertexBuffer(squareVB);
 		m_SquareVA->SetIndexBuffer(squareIB);
-
-		// Shader
-		std::string vertexSRC = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-			
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-			
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentSRC = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				// vpos gets halved and then shifted to the right by 0.5 making the range 0-1
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-
-				color = v_Color;
-			}
-		)";
 
 		// Shader
 		std::string flatColorShaderVertexSRC = R"(
@@ -135,14 +68,54 @@ public:
 			}
 		)";
 
-		m_Shader.reset(IBX_Engine::Shader::Create(vertexSRC, fragmentSRC));
+		std::string textureShaderVertexSRC = R"(
+
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSRC = R"(
+
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
 		m_FlatColorShader.reset(IBX_Engine::Shader::Create(flatColorShaderVertexSRC, flatColorShaderFragmentSRC));
+		m_TextureShader.reset(IBX_Engine::Shader::Create(textureShaderVertexSRC, textureShaderFragmentSRC));
+
+		m_Texture = IBX_Engine::Texture2D::Create("assets/test_texture.png");
+
+		const int slot = 0;
+
+		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", slot);
 	}
 
 	void OnUpdate(IBX_Engine::Timestep ts) override
 	{
-		//IBX_CLIENT_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
-
 		if (IBX_Engine::Input::IsKeyPressed(IBX_KEY_A))
 		{
 			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
@@ -196,8 +169,7 @@ public:
 
 		IBX_Engine::Renderer::BeginScene(m_Camera);
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
-		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
 
 		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_FlatColorShader)->Bind();
@@ -208,13 +180,14 @@ public:
 			for (int y = 0; y < 25; y++)
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-				glm::mat4 special_transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
 				
-				IBX_Engine::Renderer::Submit(m_FlatColorShader, m_SquareVA, special_transform);
+				IBX_Engine::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
-		
-		IBX_Engine::Renderer::Submit(m_Shader, m_VertexArray, transform);
+
+		m_Texture->Bind();
+		IBX_Engine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		IBX_Engine::Renderer::EndScene();
 	}
@@ -236,6 +209,10 @@ private:
 	IBX_Engine::Ref<IBX_Engine::VertexArray> m_VertexArray;
 
 	IBX_Engine::Ref<IBX_Engine::Shader> m_FlatColorShader;
+	IBX_Engine::Ref<IBX_Engine::Shader> m_TextureShader;
+
+	IBX_Engine::Ref<IBX_Engine::Texture2D> m_Texture;
+
 	IBX_Engine::Ref<IBX_Engine::VertexArray> m_SquareVA;
 
 	IBX_Engine::OrthographicCamera m_Camera;

@@ -18,6 +18,7 @@ IncludeDir["GLFW"] = "IBX_Engine/vendor/GLFW/include"
 IncludeDir["Glad"] = "IBX_Engine/vendor/Glad/include"
 IncludeDir["ImGui"] = "IBX_Engine/vendor/ImGui"
 IncludeDir["glm"] = "IBX_Engine/vendor/glm"
+IncludeDir["stb_image"] = "IBX_Engine/vendor/stb_image"
 
 -- Include the premake5.lua file in the GLFW project (almost like a c++ style include)
 include "IBX_Engine/vendor/GLFW"
@@ -69,7 +70,7 @@ project "Sandbox"
         "IBX_Engine/vendor/",
 
         -- Include glm
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
     }
 
     -- Defines or Preprocessor Directives
@@ -136,7 +137,13 @@ project "IBX_Engine"
         -- Recursive search for *.cpp files in source directory
         "%{prj.name}/src/**.cpp",
 
-        -- GLM
+        --------------------------------- Vendor ---------------------------------
+
+        -- STB Image --
+        "%{prj.name}/vendor/stb_image/**.h",
+        "%{prj.name}/vendor/stb_image/**.cpp",
+
+        -- GLM --
         "%{prj.name}/vendor/glm/glm/**.hpp",
         "%{prj.name}/vendor/glm/glm/**.inl"
     }
@@ -166,7 +173,10 @@ project "IBX_Engine"
         "%{IncludeDir.ImGui}",
 
         -- Include glm
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+
+        -- Include stb_image
+        "%{IncludeDir.stb_image}"
     }
 
     -- Link Libraries

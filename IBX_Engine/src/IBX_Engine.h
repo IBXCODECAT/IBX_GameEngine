@@ -29,6 +29,7 @@
 #include "IBX/Renderer/RenderCommand.h"
 #include "IBX/Renderer/RendererAPI.h"
 #include "IBX/Renderer/Shader.h"
+#include "IBX/Renderer/Texture.h"
 #include "IBX/Renderer/VertexArray.h"
 // -----------------------------------------
 
