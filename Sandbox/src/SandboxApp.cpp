@@ -38,16 +38,19 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		m_FlatColorShader.reset(IBX_Engine::Shader::Create("assets/Shaders/Color.glsl"));
-		m_TextureShader.reset(IBX_Engine::Shader::Create("assets/Shaders/Texture.glsl"));
+		m_FlatColorShader = IBX_Engine::Shader::Create("assets/Shaders/Color.glsl");
+
+		auto textureShader = m_ShaderLibrary.Load("assets/Shaders/Texture.glsl");
+			
+		//m_TextureShader = IBX_Engine::Shader::Create("assets/Shaders/Texture.glsl");
 
 		m_Texture = IBX_Engine::Texture2D::Create("assets/checkerboard.png");
 		m_LogoTexture = IBX_Engine::Texture2D::Create("assets/kitty.png");
 
 		const int slot = 0;
 
-		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", slot);
+		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", slot);
 	}
 
 	void OnUpdate(IBX_Engine::Timestep ts) override
@@ -126,11 +129,13 @@ public:
 
 		*/
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		IBX_Engine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
+		IBX_Engine::Renderer::Submit(textureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
 
 		m_LogoTexture->Bind();
-		IBX_Engine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.1f)));
+		IBX_Engine::Renderer::Submit(textureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.1f)));
 
 		IBX_Engine::Renderer::EndScene();
 	}
@@ -148,11 +153,9 @@ public:
 	}
 
 private:
-	IBX_Engine::Ref<IBX_Engine::Shader> m_Shader;
-	IBX_Engine::Ref<IBX_Engine::VertexArray> m_VertexArray;
-
+	IBX_Engine::ShaderLibrary m_ShaderLibrary;
+	
 	IBX_Engine::Ref<IBX_Engine::Shader> m_FlatColorShader;
-	IBX_Engine::Ref<IBX_Engine::Shader> m_TextureShader;
 
 	IBX_Engine::Ref<IBX_Engine::Texture2D> m_Texture, m_LogoTexture;
 
