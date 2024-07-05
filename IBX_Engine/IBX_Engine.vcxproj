@@ -160,6 +160,7 @@
     <ClInclude Include="src\IBX\Layers\LayerStack.h" />
     <ClInclude Include="src\IBX\Log.h" />
     <ClInclude Include="src\IBX\MouseButtons.h" />
+    <ClInclude Include="src\IBX\OrthographicCameraController.h" />
     <ClInclude Include="src\IBX\Renderer\Buffer.h" />
     <ClInclude Include="src\IBX\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.h" />
@@ -604,6 +605,7 @@
     <ClCompile Include="src\IBX\Layers\Layer.cpp" />
     <ClCompile Include="src\IBX\Layers\LayerStack.cpp" />
     <ClCompile Include="src\IBX\Log.cpp" />
+    <ClCompile Include="src\IBX\OrthographicCameraController.cpp" />
     <ClCompile Include="src\IBX\Renderer\Buffer.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp" />
