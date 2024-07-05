@@ -10,9 +10,9 @@ int main(int argc, char** argv)
 {
 	IBX_Engine::Log::Initialize();
 	
-	IBX_CORE_INFO("Initialized Core Logger!");
+	IBX_CORE_DEBUG("Initialized Core Logger!");
 
-	IBX_CLIENT_INFO("Initialized Client Logger!");
+	IBX_CLIENT_DEBUG("Initialized Client Logger!");
 
 	auto app = IBX_Engine::CreateApplication();
 	app->Run();

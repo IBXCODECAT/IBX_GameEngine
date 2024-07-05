@@ -6,81 +6,161 @@
 
 namespace IBX_Engine
 {
+	static GLenum ShaderTypeFromString(const std::string& type)
+	{
+		if (type == "vertex")
+			return GL_VERTEX_SHADER;
+		if (type == "fragment" || type == "pixel")
+			return GL_FRAGMENT_SHADER;
+
+		IBX_CORE_ASSERT(false, "Unknown shader type!");
+		return 0;
+	}
+
+	OpenGLShader::OpenGLShader(const std::string& filepath)
+	{
+		std::string shaderSrc = ReadFile(filepath);
+		auto shaderSources = PreProcess(shaderSrc);
+
+		Compile(shaderSources);
+	}
+
 	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
-		// Create an empty vertex shader handle
-		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		std::unordered_map<GLenum, std::string> sources;
+		sources[GL_VERTEX_SHADER] = vertexSrc;
+		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
+		Compile(sources);
+	}
 
-		// Send the vertex shader source code to GL
-		// Note that std::string's .c_str is NULL character terminated.
-		const GLchar* source = vertexSrc.c_str();
-		glShaderSource(vertexShader, 1, &source, 0);
+	OpenGLShader::~OpenGLShader()
+	{
+		glDeleteProgram(m_RendererID);
+	}
 
-		// Compile the vertex shader
-		glCompileShader(vertexShader);
+	std::string OpenGLShader::ReadFile(const std::string& filepath)
+	{
+		std::string result;
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 
-		// Check for compile time errors (did it fail to compile?)
-		GLint isCompiled = 0;
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &isCompiled);
-		if (isCompiled == GL_FALSE)
+		if (in)
 		{
-			// If it failed, then get the length of the info log
-			GLint maxLength = 0;
-			glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &maxLength);
+			// Seek to the end
+			in.seekg(0, std::ios::end);
 
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
+			// Resize the result string to the size of the file's contents
+			result.resize(in.tellg());
 
-			// We don't need the shader anymore because it failed to compile
-			// So why should we keep it around?
-			glDeleteShader(vertexShader);
+			// Seek to the beginning
+			in.seekg(0, std::ios::beg);
 
-			// Print the info log
-			IBX_CORE_ERROR("{0}", infoLog.data());
-			IBX_CORE_ASSERT(false, "Vertex Shader Compilation Failure");
-			return;
+			// Read the file's contents into the result string starting from the beginning and ending at the end
+			in.read(&result[0], result.size());
+
+			// Close the file
+			in.close();
+
+			IBX_CORE_TRACE("Read shader '{0}'", filepath);
+		}
+		else
+		{
+			IBX_CORE_ERROR("Could not open file '{0}'", filepath);
 		}
 
-		// Create an empty fragment shader handle
-		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		return result;
+	}
 
-		// Send the fragment shader source code to GL
-		// Note that std::string's .c_str is NULL character terminated.
-		source = fragmentSrc.c_str();
-		glShaderSource(fragmentShader, 1, &source, 0);
+	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
+	{
+		std::unordered_map<GLenum, std::string> shaderSources;
 
-		// Compile the fragment shader
-		glCompileShader(fragmentShader);
+		// Token to indicate the start of a shader type declaration
+		const char* typeToken = "#type";
 
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &isCompiled);
-		if (isCompiled == GL_FALSE)
+		// Calculate the length of the token
+		size_t typeTokenLength = strlen(typeToken);
+
+		// Locate the start of the shader type declaration line
+		size_t pos = source.find(typeToken, 0);
+
+		while (pos != std::string::npos)
 		{
-			GLint maxLength = 0;
-			glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &maxLength);
+			size_t eol = source.find_first_of("\r\n", pos); // End of shader type declaration line
+			IBX_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+			size_t begin = pos + typeTokenLength + 1; // Start of shader type name (after "#type " keyword)
+			std::string type = source.substr(begin, eol - begin);
+			IBX_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specification");
 
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
+			size_t nextLinePos = source.find_first_not_of("\r\n", eol); // Start of shader code after the shader type declaration line
+			IBX_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+			pos = source.find(typeToken, nextLinePos); // Start of next shader type declaration line
 
-			// We don't need the shader anymore.
-			glDeleteShader(fragmentShader);
-			// Either of them. Don't leak shaders.
-			glDeleteShader(vertexShader);
-
-			IBX_CORE_ERROR("{0}", infoLog.data());
-			IBX_CORE_ASSERT(false, "Fragment Shader Compilation Failure");
-			return;
+			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
 		}
 
-		// Create a shader program and attach the shaders to it
+		IBX_CORE_TRACE("Preprocessed {0} shaders.", shaderSources.size());
+		return shaderSources;
+	}
 
+	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
+	{
+		// Create an empty program handle
 		GLuint program = glCreateProgram();
+
+		// Create a vector of shader IDs to keep track of all the shader Ids
+		std::vector<GLuint> glShaderIDs(shaderSources.size());
+
+		// For each shader source pair (file)
+		for (auto& kv : shaderSources)
+		{
+			// Extract the shader type and source code
+			GLenum shaderType = kv.first;
+			const std::string& source = kv.second;
+
+			// Create a shader of the specified type
+			GLuint shader = glCreateShader(shaderType);
+
+			// Send the shader source code to GL
+			const GLchar* sourceCStr = source.c_str();
+			glShaderSource(shader, 1, &sourceCStr, 0);
+
+			// Compile the shader
+			glCompileShader(shader);
+
+			// Check for compile time errors (did it fail to compile?)
+			GLint isCompiled = 0;
+			glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
+			if (isCompiled == GL_FALSE)
+			{
+				// If it failed, then get the length of the info log
+				GLint maxLength = 0;
+				glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+
+				// The maxLength includes the NULL character
+				std::vector<GLchar> infoLog(maxLength);
+				glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+
+				// We don't need the shader anymore because it failed to compile
+				// So why should we keep it around?
+				glDeleteShader(shader);
+
+				// Print the info log
+				IBX_CORE_ERROR("{0}", infoLog.data());
+				IBX_CORE_ASSERT(false, "Shader Compilation Failure");
+				break;
+			}
+		
+			// If the shader compiled successfully, attach it to the program
+			glAttachShader(program, shader);
+
+			// Add the shader to the list of shader IDs
+			glShaderIDs.push_back(shader);
+			
+		}
+		
 		m_RendererID = program;
 
-		// Attach our shaders to our program
-		glAttachShader(program, vertexShader);
-		glAttachShader(program, fragmentShader);
+		IBX_CORE_TRACE("Compiling {0} shaders from source.", shaderSources.size());
 
 		// Link our program
 		glLinkProgram(program);
@@ -99,23 +179,22 @@ namespace IBX_Engine
 
 			// We don't need the program anymore.
 			glDeleteProgram(program);
-			// Don't leak shaders either.
-			glDeleteShader(vertexShader);
-			glDeleteShader(fragmentShader);
+			
+			// Delete shaders after an unsuccessful link - we don't need them anymore
+			for (auto& id : glShaderIDs) glDeleteShader(id);
 
 			IBX_CORE_ERROR("{0}", infoLog.data());
 			IBX_CORE_ASSERT(false, "Shader Linking Failure");
 			return;
 		}
 
-		// Always detach shaders after a successful link.
-		glDetachShader(program, vertexShader);
-		glDetachShader(program, fragmentShader);
-	}
+		IBX_CORE_TRACE("Linked shader program {0}.", m_RendererID);
+		IBX_CORE_TRACE("Shader compilation successful.");
 
-	OpenGLShader::~OpenGLShader()
-	{
-		glDeleteProgram(m_RendererID);
+		//Always detach shaders after a successful link - don't leak shaders
+		for (auto& id : glShaderIDs) glDeleteShader(id);
+
+		IBX_CORE_TRACE("Cleaned up shader objects.");
 	}
 
 	void OpenGLShader::Bind() const

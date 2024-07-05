@@ -38,73 +38,8 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		// Shader
-		std::string flatColorShaderVertexSRC = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			void main()
-			{
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string flatColorShaderFragmentSRC = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-		std::string textureShaderVertexSRC = R"(
-
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-		std::string textureShaderFragmentSRC = R"(
-
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TexCoord;
-			
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_FlatColorShader.reset(IBX_Engine::Shader::Create(flatColorShaderVertexSRC, flatColorShaderFragmentSRC));
-		m_TextureShader.reset(IBX_Engine::Shader::Create(textureShaderVertexSRC, textureShaderFragmentSRC));
+		m_FlatColorShader.reset(IBX_Engine::Shader::Create("assets/Shaders/Color.glsl"));
+		m_TextureShader.reset(IBX_Engine::Shader::Create("assets/Shaders/Texture.glsl"));
 
 		m_Texture = IBX_Engine::Texture2D::Create("assets/checkerboard.png");
 		m_LogoTexture = IBX_Engine::Texture2D::Create("assets/kitty.png");

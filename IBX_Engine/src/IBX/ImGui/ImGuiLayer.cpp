@@ -25,7 +25,7 @@ namespace IBX_Engine
 
 	void ImGuiLayer::OnAttach()
 	{
-		IBX_CORE_INFO("Attatching ImGuiLayer");
+		IBX_CORE_TRACE("Attatching ImGuiLayer");
 
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
