@@ -106,7 +106,8 @@ public:
 		m_FlatColorShader.reset(IBX_Engine::Shader::Create(flatColorShaderVertexSRC, flatColorShaderFragmentSRC));
 		m_TextureShader.reset(IBX_Engine::Shader::Create(textureShaderVertexSRC, textureShaderFragmentSRC));
 
-		m_Texture = IBX_Engine::Texture2D::Create("assets/test_texture.png");
+		m_Texture = IBX_Engine::Texture2D::Create("assets/checkerboard.png");
+		m_LogoTexture = IBX_Engine::Texture2D::Create("assets/kitty.png");
 
 		const int slot = 0;
 
@@ -169,9 +170,11 @@ public:
 
 		IBX_Engine::Renderer::BeginScene(m_Camera);
 
+
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-
+		/*
+		
 		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<IBX_Engine::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", IBX_Engine::Color::Color(m_SquareColor));
 
@@ -186,8 +189,13 @@ public:
 			}
 		}
 
+		*/
+
 		m_Texture->Bind();
-		IBX_Engine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		IBX_Engine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
+
+		m_LogoTexture->Bind();
+		IBX_Engine::Renderer::Submit(m_TextureShader, m_SquareVA, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.1f)));
 
 		IBX_Engine::Renderer::EndScene();
 	}
@@ -211,7 +219,7 @@ private:
 	IBX_Engine::Ref<IBX_Engine::Shader> m_FlatColorShader;
 	IBX_Engine::Ref<IBX_Engine::Shader> m_TextureShader;
 
-	IBX_Engine::Ref<IBX_Engine::Texture2D> m_Texture;
+	IBX_Engine::Ref<IBX_Engine::Texture2D> m_Texture, m_LogoTexture;
 
 	IBX_Engine::Ref<IBX_Engine::VertexArray> m_SquareVA;
 

@@ -6,6 +6,20 @@
 
 namespace IBX_Engine
 {
+	void OpenGLRendererAPI::Init()
+	{
+		// Enable depth testing
+		glEnable(GL_DEPTH_TEST);
+
+		// Enable blending
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		// Enable face culling
+		//glEnable(GL_CULL_FACE);
+		//glCullFace(GL_BACK);
+	}
+
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
 	{
 		glClearColor(color.r, color.g, color.b, color.a);

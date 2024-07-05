@@ -22,11 +22,12 @@ namespace IBX_Engine
 		IBX_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		// Unique pointer allows for automatic memory management (no need to manually delete the pointer)
+		// Create the window
 		m_Window = std::unique_ptr<Window>(Window::Create());
-
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		
+		Renderer::Init();
+
 		auto m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 	}
