@@ -107,8 +107,11 @@ namespace IBX_Engine
 		// Create an empty program handle
 		GLuint program = glCreateProgram();
 
-		// Create a vector of shader IDs to keep track of all the shader Ids
-		std::vector<GLuint> glShaderIDs(shaderSources.size());
+		IBX_CORE_ASSERT(shaderSources.size() <= 2, "Shader compilation failed! IBX Engine only supports 2 shaders per program for now.");
+		std::array<GLenum, 2> glShaderIDs;
+
+		// Incrementing index for the shader ID array
+		int glShaderIDIndex = 0;
 
 		// For each shader source pair (file)
 		for (auto& kv : shaderSources)
@@ -153,8 +156,8 @@ namespace IBX_Engine
 			// If the shader compiled successfully, attach it to the program
 			glAttachShader(program, shader);
 
-			// Add the shader to the list of shader IDs
-			glShaderIDs.push_back(shader);
+			// Store the shader ID in the array
+			glShaderIDs[glShaderIDIndex++] = shader;
 			
 		}
 		
