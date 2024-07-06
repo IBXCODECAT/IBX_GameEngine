@@ -1422,6 +1422,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Core\Application.cpp">
@@ -1500,5 +1501,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\IBX\Renderer\Color.cpp" />
+    <ClCompile Include="src\IBX\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

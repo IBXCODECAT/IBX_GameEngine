@@ -1,5 +1,7 @@
 #include "ibxpch.h"
+
 #include "Renderer.h"
+#include "Renderer2D.h"
 
 #include "IBX/Renderer/OpenGL/OpenGLShader.h"
 
@@ -10,6 +12,7 @@ namespace IBX_Engine
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

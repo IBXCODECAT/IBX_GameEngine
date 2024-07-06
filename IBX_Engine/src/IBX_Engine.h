@@ -29,6 +29,7 @@
 #include "IBX/Renderer/OrthographicCamera.h"
 #include "IBX/OrthographicCameraController.h"
 #include "IBX/Renderer/Renderer.h"
+#include "IBX/Renderer/Renderer2D.h"
 #include "IBX/Renderer/RenderCommand.h"
 #include "IBX/Renderer/RendererAPI.h"
 #include "IBX/Renderer/Shader.h"
