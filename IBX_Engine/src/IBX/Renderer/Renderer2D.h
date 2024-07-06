@@ -3,6 +3,8 @@
 #include "IBX/Renderer/Color.h"
 #include "IBX/Renderer/OrthographicCamera.h"
 
+#include "IBX/Renderer/Texture.h"
+
 namespace IBX_Engine
 {
 	class Renderer2D
@@ -17,6 +19,9 @@ namespace IBX_Engine
 		// Primitives
 		static void DrawQuad(const glm::vec2& position, const float rotation, const glm::vec2& size, const Color& color);
 		static void DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const Color& color);
+
+		static void DrawQuad(const glm::vec2& position, const float rotation, const glm::vec2& size, const Ref<Texture2D>& texture);
+		static void DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const Ref<Texture2D>& texture);
 
 	};
 }

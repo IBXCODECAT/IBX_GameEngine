@@ -14,8 +14,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-
-	
+	m_CheckerboardTexture = IBX_Engine::Texture2D::Create("assets/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -41,6 +40,7 @@ void Sandbox2D::OnUpdate(IBX_Engine::Timestep ts)
 
 	IBX_Engine::Renderer2D::DrawQuad({ -1.0f, 0.0f }, 36.0f, { 0.8f, 1.0f }, m_SquareColor);
 	IBX_Engine::Renderer2D::DrawQuad({ 0.5f, -0.5f }, 0.0f, { 0.5f, 0.75f }, IBX_Engine::Color::Red);
+	IBX_Engine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, 0.0f, { 10.0f, 10.0f }, m_CheckerboardTexture);
 
 	IBX_Engine::Renderer2D::EndScene();
 }
