@@ -19,13 +19,13 @@
 // -----------------------------------------
 
 // ---------------Core----------------------
-#include "IBX/Renderer/Color.h"
-#include "IBX/Core//Timestep.h"
+#include "IBX/Core/Timestep.h"
 #include "IBX/Core/Window/Window.h"
 // -----------------------------------------
 
 // ---------------Renderer-------------------
 #include "IBX/Renderer/Buffer.h"
+#include "IBX/Renderer/Color.h"
 #include "IBX/Renderer/OrthographicCamera.h"
 #include "IBX/OrthographicCameraController.h"
 #include "IBX/Renderer/Renderer.h"
@@ -34,8 +34,4 @@
 #include "IBX/Renderer/Shader.h"
 #include "IBX/Renderer/Texture.h"
 #include "IBX/Renderer/VertexArray.h"
-// -----------------------------------------
-
-// ---------------Entry Point---------------
-#include "IBX/EntryPoint.h"
 // -----------------------------------------

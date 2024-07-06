@@ -607,6 +607,7 @@
     <ClCompile Include="src\IBX\Core\Log.cpp" />
     <ClCompile Include="src\IBX\OrthographicCameraController.cpp" />
     <ClCompile Include="src\IBX\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\IBX\Renderer\Color.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLShader.cpp" />

@@ -1,6 +1,7 @@
-#include "IBX/Renderer/OpenGL/OpenGLShader.h"
-
 #include <IBX_Engine.h>
+#include <IBX/EntryPoint.h>
+
+#include "IBX/Renderer/OpenGL/OpenGLShader.h"
 
 #include <ImGui/imgui.h>
 
@@ -8,6 +9,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
+
 
 class ExampleLayer : public IBX_Engine::Layer
 {
@@ -24,12 +26,12 @@ public:
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
 		m_SquareVA = IBX_Engine::VertexArray::Create();
+			
 		IBX_Engine::Ref<IBX_Engine::VertexBuffer> squareVB;
-
-		squareVB.reset(IBX_Engine::VertexBuffer::Create(squareVerts, sizeof(squareVerts)));
+		squareVB = IBX_Engine::VertexBuffer::Create(squareVerts, sizeof(squareVerts));
 
 		IBX_Engine::Ref<IBX_Engine::IndexBuffer> squareIB;
-		squareIB.reset(IBX_Engine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIB = IBX_Engine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 
 		IBX_Engine::BufferLayout squareBufferLayout = {
 			{ IBX_Engine::ShaderDataType::Float3, "a_Position" },
@@ -116,7 +118,7 @@ class Sandbox : public IBX_Engine::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());
 	}
 
