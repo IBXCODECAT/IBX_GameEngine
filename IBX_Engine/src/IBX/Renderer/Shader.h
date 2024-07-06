@@ -2,6 +2,8 @@
 
 #include "ibxpch.h"
 
+#include <glm/glm.hpp>
+
 namespace IBX_Engine
 {
 	class Shader
@@ -13,6 +15,10 @@ namespace IBX_Engine
 		virtual void Unbind() const = 0;
 
 		virtual const std::string GetName() const = 0;
+
+		virtual void SetMat4(const std::string& name, const glm::mat4& matrix) = 0;
+		virtual void SetFloat3(const std::string& name, const glm::vec3& vector) = 0;
+		virtual void SetFloat4(const std::string& name, const glm::vec4& vector) = 0;
 
 		/// <summary>
 		/// Create a shader from a file containing shader source code.

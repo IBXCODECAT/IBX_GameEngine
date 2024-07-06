@@ -219,6 +219,22 @@ namespace IBX_Engine
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& matrix)
+	{
+		UploadUniformMat4(name, matrix);
+	}
+
+	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& vector)
+	{
+		UploadUniformFloat3(name, vector);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& vector)
+	{
+		UploadUniformFloat4(name, vector);
+	}
+
+
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());

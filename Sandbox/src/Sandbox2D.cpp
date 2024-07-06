@@ -39,7 +39,8 @@ void Sandbox2D::OnUpdate(IBX_Engine::Timestep ts)
 
 	IBX_Engine::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	IBX_Engine::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, m_SquareColor);
+	IBX_Engine::Renderer2D::DrawQuad({ -1.0f, 0.0f }, 36.0f, { 0.8f, 1.0f }, m_SquareColor);
+	IBX_Engine::Renderer2D::DrawQuad({ 0.5f, -0.5f }, 0.0f, { 0.5f, 0.75f }, IBX_Engine::Color::Red);
 
 	IBX_Engine::Renderer2D::EndScene();
 }
