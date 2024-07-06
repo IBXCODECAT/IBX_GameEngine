@@ -145,25 +145,28 @@
   <ItemGroup>
     <ClInclude Include="src\IBX\Core\Application.h" />
     <ClInclude Include="src\IBX\Core\Core.h" />
-    <ClInclude Include="src\IBX\Renderer\Color.h" />
+    <ClInclude Include="src\IBX\Core\Input\Input.h" />
+    <ClInclude Include="src\IBX\Core\Input\KeyCodes.h" />
+    <ClInclude Include="src\IBX\Core\Input\MouseButtons.h" />
+    <ClInclude Include="src\IBX\Core\Layers\Layer.h" />
+    <ClInclude Include="src\IBX\Core\Layers\LayerStack.h" />
+    <ClInclude Include="src\IBX\Core\Log.h" />
     <ClInclude Include="src\IBX\Core\Timestep.h" />
     <ClInclude Include="src\IBX\Core\Window\Window.h" />
+    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsInput.h" />
+    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsWindow.h" />
     <ClInclude Include="src\IBX\EntryPoint.h" />
     <ClInclude Include="src\IBX\Events\ApplicationEvent.h" />
     <ClInclude Include="src\IBX\Events\Event.h" />
     <ClInclude Include="src\IBX\Events\KeyEvent.h" />
     <ClInclude Include="src\IBX\Events\MouseEvent.h" />
     <ClInclude Include="src\IBX\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\IBX\Core\Input\Input.h" />
-    <ClInclude Include="src\IBX\Core\Input\KeyCodes.h" />
-    <ClInclude Include="src\IBX\Core\Layers\Layer.h" />
-    <ClInclude Include="src\IBX\Core\Layers\LayerStack.h" />
-    <ClInclude Include="src\IBX\Core\Log.h" />
-    <ClInclude Include="src\IBX\Core\Input\MouseButtons.h" />
     <ClInclude Include="src\IBX\OrthographicCameraController.h" />
     <ClInclude Include="src\IBX\Renderer\Buffer.h" />
+    <ClInclude Include="src\IBX\Renderer\Color.h" />
     <ClInclude Include="src\IBX\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLTexture.h" />
@@ -177,9 +180,6 @@
     <ClInclude Include="src\IBX\Renderer\Texture.h" />
     <ClInclude Include="src\IBX\Renderer\VertexArray.h" />
     <ClInclude Include="src\IBX_Engine.h" />
-    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsInput.h" />
-    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ibxpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
@@ -601,15 +601,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Core\Application.cpp" />
-    <ClCompile Include="src\IBX\ImGui\ImGuiBuild.cpp" />
-    <ClCompile Include="src\IBX\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\IBX\Core\Layers\Layer.cpp" />
     <ClCompile Include="src\IBX\Core\Layers\LayerStack.cpp" />
     <ClCompile Include="src\IBX\Core\Log.cpp" />
+    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\IBX\ImGui\ImGuiBuild.cpp" />
+    <ClCompile Include="src\IBX\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\IBX\OrthographicCameraController.cpp" />
     <ClCompile Include="src\IBX\Renderer\Buffer.cpp" />
     <ClCompile Include="src\IBX\Renderer\Color.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLTexture.cpp" />
@@ -622,9 +625,6 @@
     <ClCompile Include="src\IBX\Renderer\Shader.cpp" />
     <ClCompile Include="src\IBX\Renderer\Texture.cpp" />
     <ClCompile Include="src\IBX\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ibxpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

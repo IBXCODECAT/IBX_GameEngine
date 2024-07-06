@@ -10,29 +10,29 @@
     <Filter Include="src\IBX\Core">
       <UniqueIdentifier>{97C635B4-8329-C558-2CAF-FD0E18F190DB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\IBX\Core\Input">
+      <UniqueIdentifier>{D6CB95AD-C2AF-5603-2B10-515617134185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\IBX\Core\Layers">
+      <UniqueIdentifier>{762D6866-E28E-4574-6BFC-8B26D75C7C33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\IBX\Core\Window">
+      <UniqueIdentifier>{9EA39B80-0A05-798E-9372-BF40FFD2AF4D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\IBX\Core\Window\Windows">
+      <UniqueIdentifier>{D80B6A92-4419-9878-CDFF-9363390C642F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\IBX\Events">
       <UniqueIdentifier>{E3D9E39D-CFA7-D7A3-B83B-48CAA4A8B308}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\IBX\ImGui">
       <UniqueIdentifier>{495F593B-B51F-D571-7E5A-1EEFEAD9194E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\IBX\Layers">
-      <UniqueIdentifier>{BEC4C6AC-AA92-BAB2-9326-2BD97F939617}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\IBX\Renderer">
       <UniqueIdentifier>{65ED3C9D-51E6-5BEF-7A18-417466703BFB}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\IBX\Renderer\OpenGL">
       <UniqueIdentifier>{F9F225EC-652A-6E83-6E34-D2A6DAEA947C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Platform">
-      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Platform\OpenGL">
-      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Platform\Windows">
-      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -61,19 +61,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IBX\Core\Application.h">
-      <Filter>src\IBX</Filter>
+      <Filter>src\IBX\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Core\Core.h">
-      <Filter>src\IBX</Filter>
+      <Filter>src\IBX\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\IBX\Renderer\Color.h">
+    <ClInclude Include="src\IBX\Core\Input\Input.h">
+      <Filter>src\IBX\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Input\KeyCodes.h">
+      <Filter>src\IBX\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Input\MouseButtons.h">
+      <Filter>src\IBX\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Layers\Layer.h">
+      <Filter>src\IBX\Core\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Layers\LayerStack.h">
+      <Filter>src\IBX\Core\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Log.h">
       <Filter>src\IBX\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Core\Timestep.h">
       <Filter>src\IBX\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Core\Window\Window.h">
-      <Filter>src\IBX\Core</Filter>
+      <Filter>src\IBX\Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsInput.h">
+      <Filter>src\IBX\Core\Window\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsWindow.h">
+      <Filter>src\IBX\Core\Window\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\EntryPoint.h">
       <Filter>src\IBX</Filter>
@@ -93,34 +114,22 @@
     <ClInclude Include="src\IBX\ImGui\ImGuiLayer.h">
       <Filter>src\IBX\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\IBX\Core\Input\Input.h">
-      <Filter>src\IBX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Input\KeyCodes.h">
-      <Filter>src\IBX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Layers\Layer.h">
-      <Filter>src\IBX\Layers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Layers\LayerStack.h">
-      <Filter>src\IBX\Layers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Log.h">
-      <Filter>src\IBX</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Input\MouseButtons.h">
-      <Filter>src\IBX</Filter>
-    </ClInclude>
     <ClInclude Include="src\IBX\OrthographicCameraController.h">
       <Filter>src\IBX</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Renderer\Buffer.h">
       <Filter>src\IBX\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\Color.h">
+      <Filter>src\IBX\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\IBX\Renderer\GraphicsContext.h">
       <Filter>src\IBX\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.h">
+      <Filter>src\IBX\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLContext.h">
       <Filter>src\IBX\Renderer\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.h">
@@ -144,6 +153,9 @@
     <ClInclude Include="src\IBX\Renderer\Renderer.h">
       <Filter>src\IBX\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\IBX\Renderer\Renderer2D.h">
+      <Filter>src\IBX\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\IBX\Renderer\RendererAPI.h">
       <Filter>src\IBX\Renderer</Filter>
     </ClInclude>
@@ -158,15 +170,6 @@
     </ClInclude>
     <ClInclude Include="src\IBX_Engine.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Renderer\OpenGL\OpenGLContext.h">
-      <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IBX\Core\Window\Windows\WindowsWindow.h">
-      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\ibxpch.h">
       <Filter>src</Filter>
@@ -1422,11 +1425,25 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\IBX\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IBX\Core\Application.cpp">
-      <Filter>src\IBX</Filter>
+      <Filter>src\IBX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Core\Layers\Layer.cpp">
+      <Filter>src\IBX\Core\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Core\Layers\LayerStack.cpp">
+      <Filter>src\IBX\Core\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Core\Log.cpp">
+      <Filter>src\IBX\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsInput.cpp">
+      <Filter>src\IBX\Core\Window\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsWindow.cpp">
+      <Filter>src\IBX\Core\Window\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\IBX\ImGui\ImGuiBuild.cpp">
       <Filter>src\IBX\ImGui</Filter>
@@ -1434,22 +1451,19 @@
     <ClCompile Include="src\IBX\ImGui\ImGuiLayer.cpp">
       <Filter>src\IBX\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\IBX\Core\Layers\Layer.cpp">
-      <Filter>src\IBX\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IBX\Core\Layers\LayerStack.cpp">
-      <Filter>src\IBX\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IBX\Core\Log.cpp">
-      <Filter>src\IBX</Filter>
-    </ClCompile>
     <ClCompile Include="src\IBX\OrthographicCameraController.cpp">
       <Filter>src\IBX</Filter>
     </ClCompile>
     <ClCompile Include="src\IBX\Renderer\Buffer.cpp">
       <Filter>src\IBX\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\IBX\Renderer\Color.cpp">
+      <Filter>src\IBX\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\IBX\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLContext.cpp">
       <Filter>src\IBX\Renderer\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLRendererAPI.cpp">
@@ -1473,6 +1487,9 @@
     <ClCompile Include="src\IBX\Renderer\Renderer.cpp">
       <Filter>src\IBX\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\IBX\Renderer\Renderer2D.cpp">
+      <Filter>src\IBX\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\IBX\Renderer\RendererAPI.cpp">
       <Filter>src\IBX\Renderer</Filter>
     </ClCompile>
@@ -1485,22 +1502,11 @@
     <ClCompile Include="src\IBX\Renderer\VertexArray.cpp">
       <Filter>src\IBX\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\IBX\Renderer\OpenGL\OpenGLContext.cpp">
-      <Filter>src\Platform\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsInput.cpp">
-      <Filter>src\Platform\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IBX\Core\Window\Windows\WindowsWindow.cpp">
-      <Filter>src\Platform\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="src\ibxpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\IBX\Renderer\Color.cpp" />
-    <ClCompile Include="src\IBX\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>
