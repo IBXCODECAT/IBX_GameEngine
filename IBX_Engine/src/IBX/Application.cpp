@@ -48,6 +48,9 @@ namespace IBX_Engine
 		// Tell the dispatcher if it sees a WindowCloseEvent to call the OnWindowClose function
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
+		// Tell the dispatcher if it sees a WindowResizeEvent to call the OnWindowResize function
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+
 		// Go backwards through the layer stack and call OnEvent for each layer
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -83,10 +86,13 @@ namespace IBX_Engine
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			// Update all layers (from bottom to top)
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep); // Update the layer
-
+			// If the application is not minimized, update all layers
+			if (!m_Minimized)
+			{
+				// Update all layers (from bottom to top)
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(timestep); // Update the layer
+			}
 
 			m_ImGuiLayer->BeginNewFrame();
 
@@ -106,5 +112,22 @@ namespace IBX_Engine
 		// Set m_Running to false to stop the application loop
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		// If the window is minimized or has no pixels, return false
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+
+		// Resize the viewport
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 }

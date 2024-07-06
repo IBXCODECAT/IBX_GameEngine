@@ -44,6 +44,7 @@ namespace IBX_Engine
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 		// Unique pointer allows for automatic memory management (no need to manually delete the pointer)
 		std::unique_ptr<Window> m_Window;
@@ -52,6 +53,9 @@ namespace IBX_Engine
 
 		// Wether or not the application is running (if false, the application will close)
 		bool m_Running = true;
+
+		// Wether or not the application is minimized
+		bool m_Minimized = false;
 
 		// LayerStack is owned by the application
 		LayerStack m_LayerStack;
