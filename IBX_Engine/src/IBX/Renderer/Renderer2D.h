@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IBX/Renderer/Color.h"
 #include "IBX/Renderer/OrthographicCamera.h"
 
 namespace IBX_Engine
@@ -14,8 +15,8 @@ namespace IBX_Engine
 		static void EndScene();
 
 		// Primitives
-		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
-		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Color& color);
+		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Color& color);
 
 	};
 }

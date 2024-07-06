@@ -19,16 +19,5 @@ private:
 
 	IBX_Engine::OrthographicCameraController m_CameraController;
 
-	// Temp
-	IBX_Engine::Ref<IBX_Engine::Shader> m_FlatColorShader;
-	IBX_Engine::Ref<IBX_Engine::Shader> m_TextureShader;
-
-	IBX_Engine::Ref<IBX_Engine::VertexArray> m_VertexArray;
-
-	IBX_Engine::Ref<IBX_Engine::Texture2D> m_Texture;
-	IBX_Engine::Ref<IBX_Engine::Texture2D> m_LogoTexture;
-
-	IBX_Engine::ShaderLibrary m_ShaderLibrary;
-
-	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
+	glm::vec3 m_SquareColor = IBX_Engine::Color::Blue;
 };

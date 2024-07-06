@@ -39,21 +39,9 @@ void Sandbox2D::OnUpdate(IBX_Engine::Timestep ts)
 
 	IBX_Engine::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	IBX_Engine::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	IBX_Engine::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, m_SquareColor);
 
 	IBX_Engine::Renderer2D::EndScene();
-	
-	/*
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-	auto textureShader = m_ShaderLibrary.Get("Texture");
-
-	m_Texture->Bind();
-	IBX_Engine::Renderer::Submit(textureShader, m_VertexArray, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)));
-
-	m_LogoTexture->Bind();
-	IBX_Engine::Renderer::Submit(textureShader, m_VertexArray, glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.1f)));
-	*/
 }
 
 void Sandbox2D::OnImGuiRender()
