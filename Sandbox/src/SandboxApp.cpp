@@ -7,6 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public IBX_Engine::Layer
 {
 public:
@@ -21,7 +23,7 @@ public:
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		m_SquareVA.reset(IBX_Engine::VertexArray::Create());
+		m_SquareVA = IBX_Engine::VertexArray::Create();
 		IBX_Engine::Ref<IBX_Engine::VertexBuffer> squareVB;
 
 		squareVB.reset(IBX_Engine::VertexBuffer::Create(squareVerts, sizeof(squareVerts)));
@@ -115,6 +117,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()
