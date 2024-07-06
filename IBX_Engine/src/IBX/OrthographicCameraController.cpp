@@ -1,8 +1,8 @@
 #include "ibxpch.h"
 #include "OrthographicCameraController.h"
 
-#include "IBX/Input.h"
-#include "IBX/KeyCodes.h"
+#include "IBX/Core/Input/Input.h"
+#include "IBX/Core/Input/KeyCodes.h"
 
 namespace IBX_Engine
 {

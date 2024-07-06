@@ -2,24 +2,26 @@
 
 // For use by IBX Engine client applications
 
-#include "IBX/Application.h"
-#include "IBX/Core.h"
-#include "IBX/Layers/Layer.h"
-#include "IBX/Log.h"
+#include "IBX/Core/Application.h"
+#include "IBX/Core/Core.h"
+#include "IBX/Core/Layers/Layer.h"
+#include "IBX/Core/Log.h"
 
 
-#include "IBX/Input.h"
-#include "IBX/KeyCodes.h"
-#include "IBX/MouseButtons.h"
+// ---------------Inputs---------------------
+#include "IBX/Core/Input/Input.h"
+#include "IBX/Core/Input/KeyCodes.h"
+#include "IBX/Core/Input/MouseButtons.h"
+// -----------------------------------------
 
 // ---------------ImGui---------------------
 #include "IBX/ImGui/ImGuiLayer.h"
 // -----------------------------------------
 
 // ---------------Core----------------------
-#include "IBX/Core/Color.h"
+#include "IBX/Renderer/Color.h"
 #include "IBX/Core//Timestep.h"
-#include "IBX/Core/Window.h"
+#include "IBX/Core/Window/Window.h"
 // -----------------------------------------
 
 // ---------------Renderer-------------------

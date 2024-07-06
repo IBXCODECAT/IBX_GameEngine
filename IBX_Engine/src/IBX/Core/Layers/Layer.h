@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IBX/Core.h"
+#include "IBX/Core/Core.h"
 #include "IBX/Core/Timestep.h"
 #include "IBX/Events/Event.h"
 

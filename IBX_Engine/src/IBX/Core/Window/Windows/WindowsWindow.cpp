@@ -6,7 +6,7 @@
 #include "IBX/Events/MouseEvent.h"
 #include "IBX/Events/KeyEvent.h"
 
-#include "Platform/OpenGL/OpenGLContext.h"
+#include "IBX/Renderer/OpenGL/OpenGLContext.h"
 
 namespace IBX_Engine {
 

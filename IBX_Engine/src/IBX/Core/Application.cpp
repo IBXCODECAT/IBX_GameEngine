@@ -5,7 +5,7 @@
 // Include renderer API
 #include "IBX/Renderer/Renderer.h"
 
-#include "Input.h"
+#include "IBX/Core/Input/Input.h"
 
 // TEMPORARY
 #include <GLFW/glfw3.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IBX/Input.h"
+#include "IBX/Core/Input/Input.h"
 
 namespace IBX_Engine
 {

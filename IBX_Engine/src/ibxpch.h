@@ -20,7 +20,7 @@
 #include <vector>
 
 // Common macros
-#include "IBX/Log.h"
+#include "IBX/Core/Log.h"
 
 // Windows specific includes
 #ifdef IBX_PLATFORM_WINDOWS

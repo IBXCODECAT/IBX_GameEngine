@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IBX/Core/Window.h"
+#include "IBX/Core/Window/Window.h"
 #include "IBX/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

@@ -3,7 +3,7 @@
 // Inut will be a static class that will handle all input from the user
 // Input is static we can only have one instance of it
 
-#include "IBX/Core.h"
+#include "IBX/Core/Core.h"
 
 namespace IBX_Engine
 {

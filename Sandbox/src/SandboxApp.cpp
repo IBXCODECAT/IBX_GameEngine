@@ -85,6 +85,11 @@ public:
 	void OnEvent(IBX_Engine::Event& e) override
 	{
 		m_CameraController.OnEvent(e);
+
+		if (e.GetEventType() == IBX_Engine::EventType::WindowResize)
+		{
+			IBX_Engine::WindowResizeEvent& re = (IBX_Engine::WindowResizeEvent&)e;
+		}
 	}
 
 private:

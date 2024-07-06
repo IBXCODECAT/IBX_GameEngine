@@ -2,7 +2,7 @@
 
 #include "WindowsInput.h"
 
-#include "IBX/Application.h"
+#include "IBX/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

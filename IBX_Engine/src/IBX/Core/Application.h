@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Core.h"
-#include "Core/Window.h"
+#include "IBX/Core/Window/Window.h"
 
-#include "IBX/Events//Event.h"
-#include "IBX/Events//ApplicationEvent.h"
+#include "IBX/Events/Event.h"
+#include "IBX/Events/ApplicationEvent.h"
 
-#include "IBX/Layers/LayerStack.h"
+#include "IBX/Core/Layers/LayerStack.h"
 #include "IBX/ImGui/ImGuiLayer.h"
 
 #include "IBX/Renderer/Shader.h"

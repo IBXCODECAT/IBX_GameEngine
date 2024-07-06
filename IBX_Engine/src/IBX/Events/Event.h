@@ -2,7 +2,7 @@
 
 #include "ibxpch.h"
 
-#include "IBX/Core.h"
+#include "IBX/Core/Core.h"
 
 #include <spdlog/fmt/fmt.h>
 

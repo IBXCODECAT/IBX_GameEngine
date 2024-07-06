@@ -2,7 +2,7 @@
 
 #include "ibxpch.h"
 
-#include "IBX/Core.h"
+#include "IBX/Core/Core.h"
 #include "IBX/Events/Event.h"
 
 namespace IBX_Engine

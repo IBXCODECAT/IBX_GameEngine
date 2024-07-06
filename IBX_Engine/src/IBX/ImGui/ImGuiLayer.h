@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IBX/Layers/Layer.h"
+#include "IBX/Core/Layers/Layer.h"
 
 #include "IBX/Events/ApplicationEvent.h"
 #include "IBX/Events/KeyEvent.h"
