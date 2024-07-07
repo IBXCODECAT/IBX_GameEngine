@@ -2,6 +2,8 @@
 
 #include "ibxpch.h"
 
+#include "IBX/Renderer/Color.h"
+
 #include <glm/glm.hpp>
 
 namespace IBX_Engine
@@ -20,6 +22,8 @@ namespace IBX_Engine
 		virtual void SetMat4(const std::string& name, const glm::mat4& matrix) = 0;
 		virtual void SetFloat3(const std::string& name, const glm::vec3& vector) = 0;
 		virtual void SetFloat4(const std::string& name, const glm::vec4& vector) = 0;
+
+		virtual void SetColor(const std::string& name, const Color& color) = 0;
 
 		/// <summary>
 		/// Create a shader from a file containing shader source code.

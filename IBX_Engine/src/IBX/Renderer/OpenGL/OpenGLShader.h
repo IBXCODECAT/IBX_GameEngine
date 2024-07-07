@@ -26,6 +26,8 @@ namespace IBX_Engine
 		virtual void SetFloat3(const std::string& name, const glm::vec3& value) override;
 		virtual void SetFloat4(const std::string& name, const glm::vec4& value) override;
 
+		virtual void SetColor(const std::string& name, const Color& color) override;
+
 		void UploadUniformInt(const std::string& name, const int value);
 
 		void UploadUniformFloat(const std::string& name, const float value);

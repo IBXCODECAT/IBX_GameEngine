@@ -106,7 +106,7 @@ namespace IBX_Engine
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const IBXRef<Texture2D>& texture)
 	{
-		s_Data->Shader->SetFloat4("u_Color", Color::White);
+		s_Data->Shader->SetColor("u_Color", Color::White);
 		texture->Bind();
 		
 		float rotationRadians = glm::radians(rotation);

@@ -239,6 +239,11 @@ namespace IBX_Engine
 		UploadUniformFloat4(name, vector);
 	}
 
+	void OpenGLShader::SetColor(const std::string& name, const Color& color)
+	{
+		UploadUniformFloat4(name, color);
+	}
+
 
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
 	{
