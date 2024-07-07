@@ -26,3 +26,6 @@
 #ifdef IBX_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // IBX_PLATFORM_WINDOWS
+
+// Debugging
+#include "IBX/Debug/Instrumentor.h"
