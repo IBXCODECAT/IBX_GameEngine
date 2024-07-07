@@ -22,4 +22,12 @@ private:
 	glm::vec3 m_SquareColor = IBX_Engine::Color::Blue;
 
 	IBX_Engine::IBXRef<IBX_Engine::Texture2D> m_CheckerboardTexture;
+
+	struct ProfileResult
+	{
+		const char* Name;
+		float Time;
+	};
+
+	std::vector<ProfileResult> m_ProfileResults;
 };
