@@ -3,11 +3,29 @@
 
 #include "stb_image.h"
 
-#include <glad/glad.h>
-
 namespace IBX_Engine
 {
-	OpenGLTexture2D::OpenGLTexture2D(const std::string& path) : m_Path(path)
+	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
+		: m_Width(width), m_Height(height)
+	{
+		m_InternalFormat = GL_RGBA8;
+		m_DataFormat = GL_RGBA;
+
+		// Generate the texture on the GPU
+		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
+		glTextureStorage2D(m_RendererID, 1, m_InternalFormat, m_Width, m_Height);
+
+		// Set minification and magnification filters
+		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+		// Set the wrapping parameters
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	}
+
+	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
+		: m_Path(path)
 	{
 		int width, height, channels;
 
@@ -37,8 +55,11 @@ namespace IBX_Engine
 			dataFormat = GL_RGB;
 		}
 
+
 		// If the internal format or data format is 0, then the number of channels is not supported
 		IBX_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
+		m_InternalFormat = internalFormat;
+		m_DataFormat = dataFormat;
 
 		// Generate the texture on the GPU
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
@@ -47,6 +68,10 @@ namespace IBX_Engine
 		// Set minification and magnification filters
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+		// Set the wrapping parameters
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 		// Upload the image data to the GPU
 		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
@@ -61,8 +86,25 @@ namespace IBX_Engine
 		glDeleteTextures(1, &m_RendererID);
 	}
 
+	void OpenGLTexture2D::SetData(void* data, uint32_t size)
+	{
+		// 4 bytes per pixel for RGBA, 3 bytes per pixel for RGB
+		uint32_t byptesPerPixel = m_DataFormat == GL_RGBA ? 4 : 3;
+
+		// Assert that the size of the data is the entire texture
+		IBX_CORE_ASSERT(size == m_Width * m_Height * byptesPerPixel, "Data must be entire texture!");
+
+		// Upload the image data to the GPU
+		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
+	}
+
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
 		glBindTextureUnit(slot, m_RendererID);
+	}
+
+	void OpenGLTexture2D::Unbind() const
+	{
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }

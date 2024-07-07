@@ -6,7 +6,7 @@
 
 namespace IBX_Engine
 {
-	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
+	IBXRef<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -18,7 +18,7 @@ namespace IBX_Engine
 		return nullptr;
 	}
 
-	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
+	IBXRef<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{

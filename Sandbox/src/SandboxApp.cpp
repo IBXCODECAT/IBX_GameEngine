@@ -27,10 +27,10 @@ public:
 
 		m_SquareVA = IBX_Engine::VertexArray::Create();
 			
-		IBX_Engine::Ref<IBX_Engine::VertexBuffer> squareVB;
+		IBX_Engine::IBXRef<IBX_Engine::VertexBuffer> squareVB;
 		squareVB = IBX_Engine::VertexBuffer::Create(squareVerts, sizeof(squareVerts));
 
-		IBX_Engine::Ref<IBX_Engine::IndexBuffer> squareIB;
+		IBX_Engine::IBXRef<IBX_Engine::IndexBuffer> squareIB;
 		squareIB = IBX_Engine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 
 		IBX_Engine::BufferLayout squareBufferLayout = {
@@ -99,11 +99,11 @@ public:
 private:
 	IBX_Engine::ShaderLibrary m_ShaderLibrary;
 	
-	IBX_Engine::Ref<IBX_Engine::Shader> m_FlatColorShader;
+	IBX_Engine::IBXRef<IBX_Engine::Shader> m_FlatColorShader;
 
-	IBX_Engine::Ref<IBX_Engine::Texture2D> m_Texture, m_LogoTexture;
+	IBX_Engine::IBXRef<IBX_Engine::Texture2D> m_Texture, m_LogoTexture;
 
-	IBX_Engine::Ref<IBX_Engine::VertexArray> m_SquareVA;
+	IBX_Engine::IBXRef<IBX_Engine::VertexArray> m_SquareVA;
 
 	IBX_Engine::OrthographicCameraController m_CameraController;
 

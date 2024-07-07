@@ -27,7 +27,7 @@ namespace IBX_Engine
 			s_RendererAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray)
+		inline static void DrawIndexed(const IBXRef<VertexArray>& vertexArray)
 		{
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}

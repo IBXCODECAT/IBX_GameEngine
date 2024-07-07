@@ -26,7 +26,7 @@ namespace IBX_Engine
 		/// </summary>
 		/// <param name="filepath">The path to the file to read</param>
 		/// <returns>A shader reference</returns>
-		static Ref<Shader> Create(const std::string& filepath);
+		static IBXRef<Shader> Create(const std::string& filepath);
 
 		/// <summary>
 		/// Create a shader from source code. This is useful for debugging, testing, and for when you want to create a shader from a string.
@@ -36,22 +36,22 @@ namespace IBX_Engine
 		/// <param name="vertexSrc">Raw vertex shader code</param>
 		/// <param name="fragmentSrc">Raw fragment shader code</param>
 		/// <returns>A shader reference</returns>
-		static Ref<Shader> Create(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
+		static IBXRef<Shader> Create(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
 	};
 
 	class ShaderLibrary
 	{
 	public:
-		void Add(const Ref<Shader>& shader);
-		void Add(const std::string& name, const Ref<Shader>& shader);
+		void Add(const IBXRef<Shader>& shader);
+		void Add(const std::string& name, const IBXRef<Shader>& shader);
 
-		Ref<Shader> Load(const std::string& filepath);
-		Ref<Shader> Load(const std::string& name, const std::string& filepath);
+		IBXRef<Shader> Load(const std::string& filepath);
+		IBXRef<Shader> Load(const std::string& name, const std::string& filepath);
 
-		Ref<Shader> Get(const std::string& name);
+		IBXRef<Shader> Get(const std::string& name);
 
 		inline bool Exists(const std::string& name) const { return m_Shaders.find(name) != m_Shaders.end(); }
 	private:
-		std::unordered_map<std::string, Ref<Shader>> m_Shaders;
+		std::unordered_map<std::string, IBXRef<Shader>> m_Shaders;
 	};
 }

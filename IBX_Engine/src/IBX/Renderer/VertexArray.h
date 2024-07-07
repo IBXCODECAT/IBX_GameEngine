@@ -13,12 +13,12 @@ namespace IBX_Engine
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
-		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) = 0;
-		virtual void SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) = 0;
+		virtual void AddVertexBuffer(const IBXRef<VertexBuffer>& vertexBuffer) = 0;
+		virtual void SetIndexBuffer(const IBXRef<IndexBuffer>& indexBuffer) = 0;
 
-		virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const = 0;
-		virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
+		virtual const std::vector<IBXRef<VertexBuffer>>& GetVertexBuffers() const = 0;
+		virtual const IBXRef<IndexBuffer>& GetIndexBuffer() const = 0;
 
-		static Ref<VertexArray> Create();
+		static IBXRef<VertexArray> Create();
 	};
 }

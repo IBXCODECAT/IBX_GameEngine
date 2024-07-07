@@ -46,7 +46,7 @@ namespace IBX_Engine
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(const IBXRef<VertexBuffer>& vertexBuffer)
 	{
 		IBX_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 		
@@ -73,7 +73,7 @@ namespace IBX_Engine
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(const IBXRef<IndexBuffer>& indexBuffer)
 	{
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

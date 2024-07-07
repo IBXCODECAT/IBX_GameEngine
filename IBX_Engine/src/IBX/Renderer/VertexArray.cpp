@@ -7,7 +7,7 @@
 
 namespace IBX_Engine
 {
-	Ref<VertexArray> VertexArray::Create()
+	IBXRef<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
