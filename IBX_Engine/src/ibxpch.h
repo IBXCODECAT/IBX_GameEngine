@@ -28,4 +28,4 @@
 #endif // IBX_PLATFORM_WINDOWS
 
 // Debugging
-#include "IBX/Debug/Instrumentor.h"
+#include "IBX/Profiler/Instrumentor.h"

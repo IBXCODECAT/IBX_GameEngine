@@ -155,7 +155,7 @@
     <ClInclude Include="src\IBX\Core\Window\Window.h" />
     <ClInclude Include="src\IBX\Core\Window\Windows\WindowsInput.h" />
     <ClInclude Include="src\IBX\Core\Window\Windows\WindowsWindow.h" />
-    <ClInclude Include="src\IBX\Debug\Instrumentor.h" />
+    <ClInclude Include="src\IBX\Profiler\Instrumentor.h" />
     <ClInclude Include="src\IBX\EntryPoint.h" />
     <ClInclude Include="src\IBX\Events\ApplicationEvent.h" />
     <ClInclude Include="src\IBX\Events\Event.h" />
